@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+group 'de.gaiasoft.osm'
+version = 0.1
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = "osm"
+    appendix = "taglib"
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'http://localhost:8082/repository/milkyway/') {
+            authentication(userName: 'Gradle', password: 'ahSoexe7')
+        }
+    }
+}
