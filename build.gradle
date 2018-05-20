@@ -12,8 +12,8 @@ jar {
 
 uploadArchives {
     repositories.mavenDeployer {
-        repository(url: 'http://localhost:8082/repository/milkyway/') {
-            authentication(userName: 'Gradle', password: 'ahSoexe7')
+        repository(url: 'http://localhost:8079/repository/milkyway/') {
+            authentication(userName: 'gradle', password: 'ahSoexe7')
         }
     }
 }
