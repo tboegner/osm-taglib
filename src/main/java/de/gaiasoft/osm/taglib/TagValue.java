@@ -1,4 +1,4 @@
-package de.bogensoft.sitefinder.api.bean.adapter;
+package de.gaiasoft.osm.taglib;
 
 public enum TagValue {
     // common values

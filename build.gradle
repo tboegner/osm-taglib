@@ -12,7 +12,7 @@ jar {
 
 uploadArchives {
     repositories.mavenDeployer {
-        repository(url: 'http://archiva:8082/repository/milkyway/') {
+        repository(url: 'https://gaiasoft.de/archiva/repository/private/') {
             authentication(userName: 'gradle', password: 'ahSoexe7')
         }
     }

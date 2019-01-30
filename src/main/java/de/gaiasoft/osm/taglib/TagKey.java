@@ -1,8 +1,8 @@
-package de.bogensoft.sitefinder.api.bean.adapter;
+package de.gaiasoft.osm.taglib;
 
 import java.util.*;
 
-public enum     TagKey {
+public enum TagKey {
     AMENITY("amenity", Status.TYPE),
     SHOP("shop", Status.TYPE),
     NAME("name", Status.FREE_VALUE),
