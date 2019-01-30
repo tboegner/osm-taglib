@@ -1,7 +1,5 @@
 package de.gaiasoft.osm.taglib;
 
-import java.util.*;
-
 public enum TagKey {
     AMENITY("amenity", Status.TYPE),
     SHOP("shop", Status.TYPE),
@@ -40,54 +38,6 @@ public enum TagKey {
         }
     }
 
-    static Map<TagKey, Set<TagValue>> knownValueMap = new HashMap<>();
-    private static void defineKnownValues(TagKey tagKey, TagValue[] values) {
-        Set<TagValue> valueSet = new HashSet<>(values.length);
-        valueSet.addAll(Arrays.asList(values));
-        knownValueMap.put(tagKey, valueSet);
-    }
-    static {
-        defineKnownValues(SHOP, new TagValue[] {
-                TagValue.BAKERY,
-                TagValue.BEVERAGES,
-                TagValue.BUTCHER,
-                TagValue.CONVENIENCE,
-                TagValue.FARM,
-                TagValue.GREENGROCER,
-                TagValue.SUPERMARKET
-        });
-        defineKnownValues(AMENITY, new TagValue[] {
-                TagValue.BAR,
-                TagValue.BIERGARTEN,
-                TagValue.CAFE,
-                TagValue.FAST_FOOD,
-                TagValue.FOOD_COURT,
-                TagValue.ICE_CREAM,
-                TagValue.MARKETPLACE,
-                TagValue.PUB,
-                TagValue.RESTAURANT,
-                TagValue.VENDING_MACHINE
-        });
-        defineKnownValues(VENDING, new TagValue[] {
-                TagValue.CIGARETTES,
-                TagValue.FOOD
-        });
-        defineKnownValues(WHEELCHAIR, new TagValue[] {
-                TagValue.DESIGNATED,
-                TagValue.LIMITED,
-                TagValue.NO,
-                TagValue.YES
-        });
-        defineKnownValues(BUILDING, new TagValue[] {
-                TagValue.NO,
-                TagValue.YES
-        });
-        defineKnownValues(ORGANIC, new TagValue[] {
-                TagValue.NO,
-                TagValue.ONLY,
-                TagValue.YES
-        });
-    }
 
     public static TagKey findKey(String key) {
         for(TagKey tagKey : values()) {
@@ -122,6 +72,6 @@ public enum TagKey {
     }
 
     public boolean isValueOk(TagValue value) {
-        return status == Status.FREE_VALUE || knownValueMap.get(this).contains(value);
+        return status == Status.FREE_VALUE || TagKeyKnownValueMap.instance().get(this).contains(value);
     }
 }
