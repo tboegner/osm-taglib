@@ -19,42 +19,18 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
     }
 
     private TagKeyKnownValueMap() {
-        defineKnownValues(TagKey.PARKING, new TagValue[] {
-                MULTI_STOREY,
-                UNDERGROUND
-        });
-        defineKnownValues(TagKey.SITE_TYPE, new TagValue[] {
-                MEGALITH,
-                ROMAN_CIRCUS,
-                TUMULUS,
-                ROMAN_VILLA,
-                PETROGLYPH,
-                HUT_CIRCLE,
-                BIGSTONE,
-                FORTIFICATION,
-                NECROPOLIS,
-                SETTLEMENT
-        });
         defineKnownValues(TagKey.BICYCLE, new TagValue[] {
                 NO,
+                PRIVATE,
                 DESIGNATED,
                 YES,
-                USE_SIDEPATH
-        });
-        defineKnownValues(TagKey.BIN, new TagValue[] {
-                YES
-        });
-        defineKnownValues(TagKey.USAGE, new TagValue[] {
-                INDUSTRIAL,
-                IRRIGATION,
-                TRANSMISSION,
-                PENSTOCK,
-                TAILRACE,
-                TOURISM,
-                MILITARY,
-                HEADRACE
+                OFFICIAL,
+                PERMISSIVE,
+                USE_SIDEPATH,
+                DISMOUNT
         });
         defineKnownValues(TagKey.MAXSPEED, new TagValue[] {
+                NO,
                 SIGNALS,
                 NONE,
                 WALK
@@ -66,31 +42,54 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 NEEDLELEAVED
         });
         defineKnownValues(TagKey.ADVERTISING, new TagValue[] {
-                COLUMN
-        });
-        defineKnownValues(TagKey.TYPE, new TagValue[] {
-                BOUNDARY,
-                MULTIPOLYGON,
-                ROUTE,
-                LAND_AREA
+                FLAG,
+                TOTEM,
+                COLUMN,
+                SIGN,
+                SCREEN,
+                SCULPTURE,
+                BILLBOARD,
+                WALL_PAINTING,
+                POSTER_BOX,
+                TARP,
+                BOARD
         });
         defineKnownValues(TagKey.GEOLOGICAL, new TagValue[] {
                 PALAEONTOLOGICAL_SITE,
+                VOLCANIC_VENT,
+                VOLCANIC_CALDERA_RIM,
                 OUTCROP,
-                MORAINE
+                VOLCANIC_FUMAROLE,
+                VOLCANIC_GEYSER,
+                MORAINE,
+                VOLCANIC_LAVA_TUBE,
+                VOLCANIC_LAVA_CHANNEL
         });
         defineKnownValues(TagKey.BUILDING, new TagValue[] {
+                COLLEGE,
                 CONTAINER,
                 PARKING,
                 SHED,
                 COMMERCIAL,
                 HUT,
+                CONDOMINIUM,
                 COWSHED,
+                OFFICE,
                 BOATHOUSE,
                 BARN,
                 SCHOOL,
+                PAVILION,
                 FARM,
+                STADIUM,
+                GROUND_STATION,
                 ENTRANCE,
+                REMOTE_DIGITAL_TERMINAL,
+                STILT_HOUSE,
+                HANGAR,
+                BUNKER,
+                CONSERVATORY,
+                SPORTS_CENTRE,
+                SEMIDETACHED_HOUSE,
                 TECH_CAB,
                 GREENHOUSE,
                 SYNAGOGUE,
@@ -98,40 +97,67 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 RIDING_HALL,
                 CHAPEL,
                 WAREHOUSE,
+                FARM_AUXILIARY,
                 SHRINE,
                 DETACHED,
                 GARAGES,
+                EXIT,
+                MANUFACTURE,
+                TOILETS,
                 SPORTS_HALL,
+                PROPOSED,
                 RUINS,
                 STY,
+                BRIDGE,
                 GRANDSTAND,
                 APARTMENTS,
                 STATIC_CARAVAN,
+                TENT,
+                KINDERGARTEN,
                 MOSQUE,
+                ALLOTMENT_HOUSE,
                 HOUSEBOAT,
                 UNIVERSITY,
                 CHURCH,
                 DORMITORY,
+                CABIN,
+                PLANNED,
                 HOUSE,
+                BARRACK,
                 CIVIC,
                 RETAIL,
+                SUPERMARKET,
+                GOVERNMENT,
                 PUBLIC,
                 WATER_TOWER,
+                BREWERY,
                 TRAIN_STATION,
+                CONSTRUCTION,
                 HOTEL,
                 SLURRY_TANK,
                 TERRACE,
+                SEMI,
                 HOSPITAL,
                 CATHEDRAL,
+                CARPORT,
+                BAKEHOUSE,
                 ROOF,
                 BUNGALOW,
                 YES,
                 GARAGE,
+                TRANSPORTATION,
+                TRANSFORMER_TOWER,
                 INDUSTRIAL,
+                CENTRAL_OFFICE,
                 RESIDENTIAL,
+                SERVICE,
                 STABLE,
                 TEMPLE,
-                KIOSK
+                KIOSK,
+                FONT
+        });
+        defineKnownValues(TagKey.LOVE_LOCKS, new TagValue[] {
+                YES
         });
         defineKnownValues(TagKey.DIPLOMATIC, new TagValue[] {
                 AMBASSADORS_RESIDENCE,
@@ -143,169 +169,155 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 CONSULATE,
                 PERMANENT_MISSION
         });
-        defineKnownValues(TagKey.LEAF_CYCLE, new TagValue[] {
-                DECIDUOUS,
-                EVERGREEN
+        defineKnownValues(TagKey.ACTUATOR, new TagValue[] {
+                HYDRAULIC_CYLINDER,
+                ELECTRIC_MOTOR
         });
-        defineKnownValues(TagKey.DEFENSIVE, new TagValue[] {
-                BERGFRIED,
-                DONJON,
-                KEEP
+        defineKnownValues(TagKey.HAZMAT, new TagValue[] {
+                NO
         });
         defineKnownValues(TagKey.RAILWAY, new TagValue[] {
+                JUNCTION,
+                OBLITERATED,
+                PLATFORM_EDGE,
                 TRAM_STOP,
+                VIADUCT,
                 YARD,
-                BUFFER_STOP,
-                TURNTABLE,
+                FUEL,
+                HISTORICAL,
                 LIGHT_RAIL,
-                PLATFORM,
                 SIGNAL_BOX,
-                MONORAIL,
-                SWITCH,
                 FUNICULAR,
-                WATER_TOWER,
                 PRESERVED,
-                STATION,
-                CONSTRUCTION,
+                DISMANTLED,
+                TRAIN_STATION_ENTRANCE,
                 ROUNDHOUSE,
                 ABANDONED,
                 TRAM,
-                NARROW_GAUGE,
                 SIGNAL,
-                SUBWAY_ENTRANCE,
-                TRAVERSER,
+                WATER_CRANE,
                 RAIL,
                 WASH,
+                CROSSING,
+                LEVEL_CROSSING,
+                PROPOSED,
+                STOP,
+                RAILWAY_CROSSING,
+                SPUR_JUNCTION,
+                BUFFER_STOP,
+                TURNTABLE,
+                PLATFORM,
+                MONORAIL,
+                SWITCH,
+                SERVICE_STATION,
+                WATER_TOWER,
+                STATION,
+                CONSTRUCTION,
+                NARROW_GAUGE,
+                SUBWAY_ENTRANCE,
+                HISTORIC,
+                TRAVERSER,
+                CROSSING_CONTROLLER,
                 RAIL_BRAKE,
                 DISUSED,
-                CROSSING,
                 HALT,
-                LEVEL_CROSSING,
+                DIAMOND,
                 SUBWAY,
                 MILESTONE,
-                STOP,
                 MINIATURE,
-                RAILWAY_CROSSING,
-                DERAIL
+                DERAIL,
+                RAZED
         });
-        defineKnownValues(TagKey.INCLINE, new TagValue[] {
-                UP,
-                DOWN
+        defineKnownValues(TagKey.BAY, new TagValue[] {
+                FJORD
+        });
+        defineKnownValues(TagKey.HUNTING, new TagValue[] {
+                RAISED_HIDE
         });
         defineKnownValues(TagKey.DOCK, new TagValue[] {
                 DRYDOCK,
-                FLOATING
+                FLOATING,
+                TIDAL
         });
-        defineKnownValues(TagKey.ABANDONED, new TagValue[] {
-                YES,
-                VILLAGE
+        defineKnownValues(TagKey.SWIMMING_POOL, new TagValue[] {
+                YES
         });
-        defineKnownValues(TagKey.SOCIAL_FACILITY, new TagValue[] {
-                ASSISTED_LIVING,
-                NURSING_HOME,
-                DAY_CARE,
-                AMBULATORY_CARE,
-                GROUP_HOME,
-                WORKSHOP,
-                FOOD_BANK,
-                HOSPICE,
-                SOUP_KITCHEN
+        defineKnownValues(TagKey.PASSING_PLACES, new TagValue[] {
+                NO,
+                YES
         });
-        defineKnownValues(TagKey.SURFACE, new TagValue[] {
-                PAVING_STONES,
-                SAND,
-                RED_SAND,
-                GRASS,
-                CONCRETE_LANES,
-                ASPHALT,
-                PAVED,
-                UNPAVED
+        defineKnownValues(TagKey.CYCLESTREET, new TagValue[] {
+                YES
         });
-        defineKnownValues(TagKey.NATURAL, new TagValue[] {
-                SCREE,
-                SADDLE,
-                CLIFF,
-                BARE_ROCK,
-                CAVE_ENTRANCE,
-                ARETE,
-                SINKHOLE,
-                SHRUB,
-                FELL,
-                HEATH,
-                ROCK,
-                SPRING,
-                WOOD,
-                BAY,
-                VOLCANO,
-                RIDGE,
-                GLACIER,
-                TREE_ROW,
-                SHOAL,
-                REEF,
-                COASTLINE,
-                WETLAND,
-                HOT_SPRING,
-                TREE,
-                GULLY,
-                TERMITE_MOUND,
-                PEAK,
-                SCRUB,
-                ANTHILL,
-                WATER,
-                GEYSER,
-                GRASSLAND,
-                STRAIT,
-                STONE,
-                EARTH_BANK,
-                SAND,
-                TREE_GROUP,
-                MOOR,
-                BEACH,
-                GORGE,
-                SHINGLE,
-                VALLEY,
-                CAPE,
-                MUD
+        defineKnownValues(TagKey.EUROPEAN_CULTURAL_PATH, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.RAMP, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.BBQ, new TagValue[] {
+                YES
         });
         defineKnownValues(TagKey.WIRES, new TagValue[] {
                 DOUBLE
         });
         defineKnownValues(TagKey.HORSE, new TagValue[] {
+                NO,
                 DESIGNATED
         });
         defineKnownValues(TagKey.SHELTER_TYPE, new TagValue[] {
                 LEAN_TO,
-                BASIC_HUT
+                FIELD_SHELTER,
+                BASIC_HUT,
+                PUBLIC_TRANSPORT
         });
         defineKnownValues(TagKey.ROUTE, new TagValue[] {
                 BUS,
+                MOTORBOAT,
                 BICYCLE,
+                CANOE,
+                MUDFLAT_HIKING,
+                LIGHT_RAIL,
+                MONORAIL,
+                PISTE,
+                RUNNING,
+                SKI,
+                SHARE_TAXI,
+                AQUEDUCT,
+                ROAD,
+                FERRY,
+                NCN,
+                MTB,
+                CANAL,
+                POWER,
+                RAILWAY,
+                TRAM,
+                FOOT,
+                TRAIN,
+                EVACUATION,
+                HISTORIC,
                 NORDIC_WALKING,
                 FITNESS_TRAIL,
                 HIKING,
-                LIGHT_RAIL,
                 TROLLEYBUS,
                 TRACKS,
                 HORSE,
                 PIPELINE,
-                PISTE,
-                RUNNING,
-                SKI,
+                TRANSHUMANCE,
+                DETOUR,
                 SUBWAY,
                 INLINE_SKATES,
-                ROAD,
-                FERRY,
-                MTB,
-                RAILWAY,
-                TRAM,
-                FOOT,
-                TRAIN
+                MINIBUS,
+                COACH,
+                FERRATA
         });
         defineKnownValues(TagKey.ANIMAL, new TagValue[] {
                 SCHOOL,
                 HORSE_WALKER
         });
         defineKnownValues(TagKey.PLACEMENT, new TagValue[] {
+                RIGHT_OF_1,
                 TRANSITION
         });
         defineKnownValues(TagKey.BRIDGE, new TagValue[] {
@@ -313,199 +325,330 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 CANTILEVER,
                 VIADUCT,
                 MOVABLE,
+                SIMPLE_BRUNNEL,
                 AQUEDUCT,
                 YES,
                 COVERED,
-                BOARDWALK
+                BOARDWALK,
+                DRAWBRIDGE
+        });
+        defineKnownValues(TagKey.WHITEWATER, new TagValue[] {
+                PUT_IN,
+                HAZARD,
+                EGRESS
+        });
+        defineKnownValues(TagKey.FAST_FOOD, new TagValue[] {
+                CAFETERIA
+        });
+        defineKnownValues(TagKey.HARBOUR, new TagValue[] {
+                MARINA,
+                YES
+        });
+        defineKnownValues(TagKey.SHELTER, new TagValue[] {
+                NO,
+                YES
         });
         defineKnownValues(TagKey.ACCESS, new TagValue[] {
                 DELIVERY,
+                NO,
                 PRIVATE,
+                YES,
+                DESTINATION,
+                BDOUBLE,
+                OFFICIAL,
+                DISCOURAGED,
+                LICENSE,
+                AGRICULTURAL,
                 DESIGNATED,
-                DESTINATION
+                PERMISSIVE,
+                CUSTOMERS,
+                EXCLUSION_ZONE,
+                FORESTRY,
+                USE_SIDEPATH,
+                DISMOUNT
         });
         defineKnownValues(TagKey.AMENITY, new TagValue[] {
-                COLLEGE,
-                PARKING,
-                STUDIO,
-                FOUNTAIN,
+                STOOL,
+                PUBLIC_BUILDING,
                 KNEIPP_WATER_CURE,
-                PLACE_OF_WORSHIP,
-                MUSIC_VENUE,
-                ICE_CREAM,
+                VETERINARY_PHARMACY,
+                CONCESSION_STAND,
+                GAMBLING,
+                ADVERTISING,
+                CAR_REPAIR,
                 THEATRE,
-                TROLLEY_BAY,
-                MOTORCYCLE_PARKING,
                 BANK,
                 BAR,
                 BOAT_RENTAL,
                 HUNTING_STAND,
+                JOBCENTRE,
+                SECURITY_BOOTH,
                 COURTHOUSE,
                 CUSTOMS,
                 COMPRESSED_AIR,
                 CINEMA,
                 HOOKAH_LOUNGE,
-                HOSPICE,
-                COMMUNITY_CENTRE,
+                STREET_LAMP,
+                DRIVER_TRAINING_AREA,
                 PRISON,
-                SOCIAL_FACILITY,
+                SWIMMING_POOL,
                 ARTS_CENTRE,
-                BUS_STATION,
+                SEPTIC_TANK,
+                LIFEBOAT_STATION,
                 SKI_SCHOOL,
                 TAXI,
-                BUREAU_DE_CHANGE,
                 WATERING_PLACE,
                 WEIGHBRIDGE,
-                BICYCLE_RENTAL,
+                LIFE_RING,
+                DRYER,
+                CRUCIFIX,
+                MARAE,
                 BBQ,
-                BICYCLE_PARKING,
+                SEAT,
+                TOILET,
                 DOCTORS,
                 BOAT_STORAGE,
                 PUBLIC_BOOKCASE,
                 FAST_FOOD,
                 SHOWER,
+                VACUUM_CLEANER,
+                SWINGERCLUB,
+                CLOAKROOM,
                 SHELTER,
-                GRIT_BIN,
+                VEHICLE_RAMP,
                 BROTHEL,
                 PHOTO_BOOTH,
-                MUSIC_SCHOOL,
-                LANGUAGE_SCHOOL,
-                LIBRARY,
                 PLANETARIUM,
                 DRIVING_SCHOOL,
-                PRISON_CAMP,
+                HOTEL,
                 KITCHEN,
-                CAR_WASH,
-                REGISTER_OFFICE,
-                RESTAURANT,
+                BTS,
+                DEVICE_CHARGING_STATION,
                 POST_OFFICE,
-                VETERINARY,
                 BAKING_OVEN,
-                MONASTERY,
+                SOCIAL_CENTRE,
                 POLICE,
-                FISH_SPA,
-                GRAVE_YARD,
+                CHILDCARE,
                 RANGER_STATION,
-                ANIMAL_BREEDING,
                 STABLES,
-                SANITARY_DUMP_STATION,
                 DIVE_CENTRE,
                 BABY_HATCH,
                 FRIDGE,
                 ADMINISTRATION,
-                FUEL,
-                CASINO,
+                FAB_LAB,
+                COMMUNITY_CENTER,
                 VEHICLE_INSPECTION,
-                FIRE_HYDRANT,
                 POST_BOX,
                 SMOKING_AREA,
                 SCHOOL,
-                WATER_POINT,
                 YOUTH_CENTRE,
+                BIRD_BATH,
+                CLUB,
+                DONATION,
                 ATM,
-                DANCING_SCHOOL,
+                COAST_RADAR_STATION,
                 EXHIBITION_CENTRE,
+                MOBILE_LIBRARY,
                 PUBLIC_BATH,
-                NIGHTCLUB,
                 NURSING_HOME,
+                EXERCISE_POINT,
+                AUDIOLOGIST,
+                DOG_WASTE_BIN,
+                TELEPHONE,
+                CONCERT_HALL,
+                FEEDING_PLACE,
+                GARAGES,
+                DOG_BIN,
+                FERRY_TERMINAL,
+                PHARMACY,
+                BUILDING_YARD,
+                WASTE_DISPOSAL,
+                SKI_RENTAL,
+                BICYCLE_REPAIR_STATION,
+                WASTE_BASKET,
+                ANIMAL_BOARDING,
+                SHOP,
+                SNOW_REMOVAL_STATION,
+                CRYPT,
+                MILK_DISPENSER,
+                TRAINING,
+                HARBOURMASTER,
+                CAR_SHARING,
+                DISPENSER,
+                EMERGENCY_PHONE,
+                YACHT_CLUB,
+                FIRST_AID,
+                VENDING_MACHINE,
+                TOWNHALL,
+                MORTUARY,
+                PARKING_ENTRANCE,
+                SANATORIUM,
+                EVENTS_VENUE,
+                TUITION,
+                DISUSED,
+                CONSULATE,
+                RETIREMENT_HOME,
+                CREMATORIUM,
+                PARCEL_LOCKERS,
+                WASTE_TRANSFER_STATION,
+                DRINKING_WATER,
+                KIOSK,
+                PUB,
+                AMBULANCE_STATION,
+                COLLEGE,
+                PARKING,
+                STUDIO,
+                FOUNTAIN,
+                EDUCATION,
+                PARKINK,
+                PLACE_OF_WORSHIP,
+                MUSIC_VENUE,
+                SCEPTIC_TANK,
+                ICE_CREAM,
+                TROLLEY_BAY,
+                LETTER_BOX,
+                MOTORCYCLE_PARKING,
+                COAST_GUARD,
+                CAR_POOLING,
+                COWORKING_SPACE,
+                WINERY,
+                HOSPICE,
+                STRIPCLUB,
+                COMMUNITY_CENTRE,
+                SOCIAL_FACILITY,
+                BICYCLE_TRAILER_SHARING,
+                BUS_STATION,
+                PRINTER,
+                BUREAU_DE_CHANGE,
+                BICYCLE_RENTAL,
+                EV_CHARGING,
+                FOOD_COURT,
+                NURSERY,
+                COURIER,
+                BICYCLE_PARKING,
+                RESCUE_STATION,
+                PRESCHOOL,
+                CULTURE_CENTER,
+                DOJO,
+                CANOE_HIRE,
+                GRIT_BIN,
+                LAVOIR,
+                MUSIC_SCHOOL,
+                LANGUAGE_SCHOOL,
+                STREET_LIGHT,
+                LIBRARY,
+                ANIMAL_TRAINING,
+                FITNESS_STATION,
+                AIR_FILLING,
+                LOUNGER,
+                PRISON_CAMP,
+                RESCUE_BOX,
+                SAUNA,
+                DEAD_PUB,
+                TABLE,
+                WASHING_MACHINE,
+                CAR_WASH,
+                REGISTER_OFFICE,
+                TELEVISION,
+                RESTAURANT,
+                VETERINARY,
+                DRIVER_TRAINING,
+                MONASTERY,
+                FISH_SPA,
+                LOADING_DOCK,
+                GRAVE_YARD,
+                POLLING_STATION,
+                ANIMAL_BREEDING,
+                BUS_STOP,
+                SANITARY_DUMP_STATION,
+                CARWASH,
+                TAXI_POINT,
+                FLIGHT_SCHOOL,
+                FUEL,
+                CASINO,
+                OFFICE,
+                VIVARIUM,
+                FIRE_HYDRANT,
+                HYDRANT,
+                WATER_POINT,
+                DANCING_SCHOOL,
+                NIGHTCLUB,
                 BIERGARTEN,
+                ALM,
+                REFUGEE_HOUSING,
                 BENCH,
                 MARKETPLACE,
+                PARCEL_POSTBOX,
+                PAYMENT_TERMINAL,
                 MEDICAL_SUPPLY,
+                PAYMENT_CENTRE,
+                SPA,
                 ARCHIVE,
-                TELEPHONE,
+                ARTWORK,
                 CLOCK,
                 TICKET_VALIDATOR,
+                WATER,
                 CHARGING_STATION,
-                CONCERT_HALL,
                 DENTIST,
                 TOILETS,
                 CAFE,
                 FESTIVAL_GROUNDS,
-                FERRY_TERMINAL,
-                PHARMACY,
+                PROPOSED,
+                FIRSTAID,
+                MOTORCYCLE_RENTAL,
                 CAR_RENTAL,
                 EMBASSY,
-                WASTE_DISPOSAL,
-                BICYCLE_REPAIR_STATION,
-                WASTE_BASKET,
+                GYM,
+                POST_DEPOT,
                 CONFERENCE_CENTRE,
                 KINDERGARTEN,
-                ANIMAL_BOARDING,
                 INTERNET_CAFE,
+                CITYMAP_POST,
                 UNIVERSITY,
-                CAR_SHARING,
-                EMERGENCY_PHONE,
+                MONEY_TRANSFER,
+                ARCHITECT_OFFICE,
+                BUS_PARKING,
+                BOAT_SHARING,
                 HOSPITAL,
+                RECEPTION_DESK,
                 ANIMAL_SHELTER,
-                VENDING_MACHINE,
-                TOWNHALL,
-                PARKING_ENTRANCE,
-                EVENTS_VENUE,
+                MICROWAVE,
+                PARK,
+                BIKESHED,
                 RECYCLING,
-                RETIREMENT_HOME,
+                JUICE_BAR,
                 FIRE_STATION,
+                TICKET_BOOTH,
+                DOCTOR,
                 RESEARCH_INSTITUTE,
-                CREMATORIUM,
-                WASTE_TRANSFER_STATION,
-                DRINKING_WATER,
+                CREMATORY,
+                DRESSING_ROOM,
+                LOVE_HOTEL,
                 PARKING_SPACE,
                 CLINIC,
-                PUB
+                FINANCIAL_ADVICE,
+                GAME_FEEDING
+        });
+        defineKnownValues(TagKey.CENTRALKEY, new TagValue[] {
+                EUROKEY
         });
         defineKnownValues(TagKey.DENOTATION, new TagValue[] {
+                CLUSTER,
+                LANDMARK,
                 NATURAL_MONUMENT
         });
         defineKnownValues(TagKey.MOUNTAIN_PASS, new TagValue[] {
                 YES
         });
-        defineKnownValues(TagKey.TOURISM, new TagValue[] {
-                TRAIL_RIDING_STATION,
-                GUEST_HOUSE,
-                VIEWPOINT,
-                HOSTEL,
-                WINE_CELLAR,
-                CHALET,
-                ARTWORK,
-                MOTEL,
-                AQUARIUM,
-                WILDERNESS_HUT,
-                ATTRACTION,
-                MUSEUM,
-                ALPINE_HUT,
-                CARAVAN_SITE,
-                HOTEL,
-                CAMP_SITE,
-                INFORMATION,
-                THEME_PARK,
-                ZOO,
-                PICNIC_SITE,
-                APARTMENT,
-                GALLERY
-        });
-        defineKnownValues(TagKey.TRAFFIC_SIGN, new TagValue[] {
-                CITY_LIMIT
-        });
         defineKnownValues(TagKey.LAND_AREA, new TagValue[] {
                 ADMINISTRATIVE
         });
-        defineKnownValues(TagKey.PUBLIC_TRANSPORT, new TagValue[] {
-                STATION,
-                STOP_AREA,
-                STOP_POSITION,
-                PLATFORM
-        });
         defineKnownValues(TagKey.BUNKER_TYPE, new TagValue[] {
                 HARDENED_AIRCRAFT_SHELTER,
+                TECHNICAL,
+                GUN_EMPLACEMENT,
                 MUNITIONS,
                 PILLBOX
-        });
-        defineKnownValues(TagKey.VEHICLE, new TagValue[] {
-                DESTINATION
-        });
-        defineKnownValues(TagKey.HEALTHCARE, new TagValue[] {
-                LABORATORY,
-                BLOOD_DONATION
         });
         defineKnownValues(TagKey.GOLF, new TagValue[] {
                 HOLE,
@@ -519,271 +662,164 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 WATER_HAZARD,
                 LATERAL_WATER_HAZARD
         });
-        defineKnownValues(TagKey.GOVERNMENT, new TagValue[] {
-                REGISTER_OFFICE,
-                YOUTH_WELFARE_DEPARTMENT,
-                CUSTOMS,
-                ARCHIVE,
-                TAX,
-                CADASTER,
-                PROSECUTOR,
-                MINISTRY,
-                HEALTHCARE,
-                STATISTICS
-        });
-        defineKnownValues(TagKey.PRISON_CAMP, new TagValue[] {
-                CONCENTRATION_CAMP
-        });
-        defineKnownValues(TagKey.LANDUSE, new TagValue[] {
-                POND,
-                RELIGIOUS,
-                COMMERCIAL,
-                FOREST,
-                DEPOT,
-                FARMYARD,
-                BROWNFIELD,
-                PLANT_NURSERY,
-                FARMLAND,
-                RETAIL,
-                LANDFILL,
-                VINEYARD,
-                GRASS,
-                CONSTRUCTION,
-                FARM,
-                MILITARY,
-                RAILWAY,
-                CEMETERY,
-                PASTURE,
-                MEADOW,
-                GREENHOUSE_HORTICULTURE,
-                GREENFIELD,
-                VILLAGE_GREEN,
-                ALLOTMENTS,
-                FLOWERBED,
-                BASIN,
-                SALT_POND,
-                QUARRY,
-                FARMYARDS,
-                GARAGES,
-                AQUACULTURE,
-                INDUSTRIAL,
-                RESIDENTIAL,
-                ORCHARD,
-                RECREATION_GROUND,
-                RESERVOIR
-        });
-        defineKnownValues(TagKey.POWER, new TagValue[] {
-                CABLE_DISTRIBUTION_CABINET,
-                LINE,
-                CONVERTER,
-                TRANSFORMER,
-                GENERATOR,
-                HELIOSTAT,
-                POLE,
-                SUB_STATION,
-                SWITCH,
-                SWITCHGEAR,
-                PLANT,
-                SUBSTATION,
-                STATION,
-                PORTAL,
-                CABLE,
-                MINOR_LINE,
-                TOWER
-        });
-        defineKnownValues(TagKey.PLACE, new TagValue[] {
-                CONTINENT,
-                COUNTRY,
-                ISOLATED_DWELLING,
-                TOWN,
-                CITY,
-                HAMLET,
-                ISLAND,
-                COUNTY,
-                LOCALITY,
-                ISLET,
-                SQUARE,
-                NEIGHBOURHOOD,
-                ARCHIPELAGO,
-                SUBURB,
-                STATE,
-                VILLAGE
+        defineKnownValues(TagKey.MANAGED, new TagValue[] {
+                NO,
+                YES
         });
         defineKnownValues(TagKey.PUMP, new TagValue[] {
+                NO,
                 POWERED,
                 MANUAL
         });
-        defineKnownValues(TagKey.LEISURE, new TagValue[] {
-                BOWLING_ALLEY,
-                ICE_RINK,
-                TANNING_SALON,
-                BEACH_RESORT,
-                COMMON,
-                FITNESS_STATION,
-                SAUNA,
-                TABLE_TENNIS_TABLE,
-                PLAYGROUND,
-                STADIUM,
-                HORSE_RIDING,
-                OUTDOOR_SEATING,
-                PITCH,
-                SLIPWAY,
-                RESORT,
-                TRACK,
-                DANCE,
-                PARK,
-                SWIMMING_POOL,
-                BANDSTAND,
-                SPORTS_CENTRE,
-                FISHING,
-                HOT_SPRING,
-                PICNIC_TABLE,
-                BIRD_HIDE,
-                WILDLIFE_HIDE,
-                FOOT_BATH,
-                MARINA,
-                SPORTS_HALL,
-                FITNESS_CENTRE,
-                FISH_SPA,
-                WATER_PARK,
-                SWIMMING_AREA,
-                DISC_GOLF_COURSE,
-                DOG_PARK,
-                GARDEN,
-                MINIATURE_GOLF,
-                NATURE_RESERVE,
-                FIREPIT,
-                ADULT_GAMING_CENTRE,
-                GOLF_COURSE
-        });
         defineKnownValues(TagKey.CEMETERY, new TagValue[] {
-                GRAVE
+                GRAVE,
+                SECTOR
         });
         defineKnownValues(TagKey.FOOT, new TagValue[] {
                 NO,
                 DESIGNATED,
+                YES,
+                OFFICIAL
+        });
+        defineKnownValues(TagKey.NOEXIT, new TagValue[] {
+                NO,
                 YES
         });
-        defineKnownValues(TagKey.AERIALWAY, new TagValue[] {
-                CABLE_CAR,
-                PYLON,
-                T_BAR,
-                MAGIC_CARPET,
-                DRAG_LIFT,
-                STATION,
-                GOODS,
-                CHAIR_LIFT,
-                GONDOLA
+        defineKnownValues(TagKey.TIDAL, new TagValue[] {
+                SAND,
+                PEBBLES,
+                ROCKS,
+                YES,
+                MUD
         });
-        defineKnownValues(TagKey.ONEWAY, new TagValue[] {
-                NO,
-                _1,
+        defineKnownValues(TagKey.TAKEAWAY, new TagValue[] {
                 YES
         });
         defineKnownValues(TagKey.RELIGION, new TagValue[] {
+                UNITARIAN_UNIVERSALIST,
+                VOODOO,
+                BAHAI,
                 MUSLIM,
-                HINDU,
-                CHRISTIAN,
-                BUDDHIST,
+                SIKH,
+                SPIRITUALIST,
                 JEWISH,
+                JAIN,
+                CHINESE_FOLK,
+                CONFUCIAN,
+                PASTAFARIAN,
+                SCIENTOLOGIST,
+                HINDU,
+                PAGAN,
+                ANIMIST,
+                TAOIST,
+                CHRISTIAN,
+                YAZIDI,
+                ZOROASTRIAN,
+                BUDDHIST,
+                CAODAISM,
+                MULTIFAITH,
                 SHINTO
         });
-        defineKnownValues(TagKey.SMOOTHNESS, new TagValue[] {
-                GOOD
+        defineKnownValues(TagKey.BUSBAR, new TagValue[] {
+                FLEXIBLE,
+                RIGID
+        });
+        defineKnownValues(TagKey.RESIDENTIAL, new TagValue[] {
+                URBAN,
+                UNIVERSITY,
+                RURAL,
+                HALTING_SITE
         });
         defineKnownValues(TagKey.INFORMATION, new TagValue[] {
                 TACTILE_MODEL,
                 GUIDEPOST,
                 TACTILE_MAP,
+                TRAIL_BLAZE,
                 OFFICE,
+                ROUTE_MARKER,
                 TERMINAL,
                 AUDIOGUIDE,
                 MAP,
                 BOARD
         });
-        defineKnownValues(TagKey.JUNCTION, new TagValue[] {
-                ROUNDABOUT
-        });
-        defineKnownValues(TagKey.MICROBREWERY, new TagValue[] {
+        defineKnownValues(TagKey.ICE_ROAD, new TagValue[] {
                 YES
         });
-        defineKnownValues(TagKey.CRAFT, new TagValue[] {
-                HVAC,
-                ELECTRICIAN,
-                CARPENTER,
-                CAR_REPAIR,
-                BOOKBINDER,
-                TILER,
-                BLACKSMITH,
-                ORGAN_BUILDER,
-                PAPERHANGER,
-                WINERY,
-                WATCHMAKER,
-                METAL_CONSTRUCTION,
-                CHIMNEY_SWEEPER,
-                WINDOW_CONSTRUCTION,
-                SADDLER,
-                ELECTRICAN,
-                SHOEMAKER,
-                GARDENER,
-                STONEMASON,
-                PAINTER,
-                SAWMILL,
-                CARPET_LAYER,
-                TINSMITH,
-                DRESSMAKER,
-                BASKET_MAKER,
-                UPHOLSTERER,
-                DISTILLERY,
-                AGRICULTURAL_ENGINES,
-                BOATBUILDER,
-                BEEKEEPER,
-                TAILOR,
-                CONFECTIONERY,
-                HANDICRAFT,
-                CATERER,
-                INFORMATION_ELECTRONICS,
-                PLUMBER,
-                PARQUET_LAYER,
-                BUILDER,
-                ROOFER,
-                PHOTOGRAPHER,
-                TOOLMAKER,
-                DENTAL_TECHNICIAN,
-                SUN_PROTECTION,
-                GLAZIERY,
-                OPTICIAN,
-                FLOORER,
-                POTTERY,
-                TURNER,
-                JOINER,
-                COOPER,
-                SCAFFOLDER
+        defineKnownValues(TagKey.JUNCTION, new TagValue[] {
+                FILTER,
+                SPUI,
+                YES,
+                JUGHANDLE,
+                CIRCULAR,
+                CROSSING,
+                ROUNDABOUT
+        });
+        defineKnownValues(TagKey.REFERENCE_POINT, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.BABY_HATCH, new TagValue[] {
+                YES
         });
         defineKnownValues(TagKey.EMERGENCY, new TagValue[] {
                 ACCESS_POINT,
                 AMBULANCE_STATION,
                 AED,
                 SIREN,
-                YES,
+                FIRE_ALARM_BOX,
                 ASSEMBLY_POINT,
                 SUCTION_POINT,
+                DESTINATION,
+                LIFEGUARD_TOWER,
+                FIRE_HYDRANT,
+                LANDING_SITE,
+                SPRINKLER_CONNECTION,
+                DRY_RISER,
+                COAST_GUARD,
+                FIRE_FLAPPER,
+                FIRST_AID_KIT,
+                SIAMESE,
+                MOUNTAIN_RESCUE,
+                LIFEGUARD,
+                RESCUE_BOX,
+                SLIPWAY,
+                FIRE_ALARM,
+                SPRINKLER,
+                FIRE_WATER_POND,
+                FIRST_AID,
+                FIRE_DETECTION_SYSTEM,
+                FIRE_EXTINGUISHER,
+                LIFEBOAT_STATION,
+                YES,
+                FIRE_HOSE,
+                STANDPIPE,
                 EMERGENCY_WARD_ENTRANCE,
                 LIFE_RING,
                 LIFEGUARD_BASE,
-                LIFEGUARD_TOWER,
-                FIRE_HYDRANT,
-                FIRST_AID_KIT,
+                FIRE_POINT_STAND,
+                DISASTER_RESPONSE,
+                DRY_RISER_INLET,
+                DEFIBRILATOR,
                 LIFEGUARD_PLACE,
                 PHONE,
-                MOUNTAIN_RESCUE,
+                LIFEGUARD_PLATFORM,
+                SES_STATION,
                 WATER_RESCUE_STATION,
-                DEFIBRILLATOR,
-                FIRE_WATER_POND,
-                FIRST_AID
+                WATER_TANK,
+                FIRE_SAND_BIN,
+                MARINE_REFUGE,
+                WET_RISER,
+                DEFIBRILLATOR
+        });
+        defineKnownValues(TagKey.GOODS, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.WATER_SOURCE, new TagValue[] {
+                MAIN,
+                RIVER
         });
         defineKnownValues(TagKey.RECYCLING_TYPE, new TagValue[] {
-                CONTAINER
+                CONTAINER,
+                CENTRE
         });
         defineKnownValues(TagKey.TRACKTYPE, new TagValue[] {
                 GRADE5,
@@ -792,138 +828,156 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 GRADE2,
                 GRADE1
         });
-        defineKnownValues(TagKey.SOURCE, new TagValue[] {
-                YAHOO,
-                YAHOO,
-                HIRES_AERIAL_IMAGERY
-        });
-        defineKnownValues(TagKey.OFFICE, new TagValue[] {
-                INSURANCE,
-                NEWSPAPER,
-                ADOPTION_AGENCY,
-                EDUCATIONAL_INSTITUTION,
-                ACCOUNTANT,
-                ENERGY_SUPPLIER,
-                TAX_ADVISOR,
-                ARCHITECT,
-                ASSOCIATION,
-                RESEARCH,
-                POLITICAL_PARTY,
-                DIPLOMATIC,
-                GOVERNMENT,
-                CHARITY,
-                GEODESIST,
-                PARISH,
-                NGO,
-                ADVERTISING_AGENCY,
-                ESTATE_AGENT,
-                GUIDE,
-                LAWYER,
-                THERAPIST,
-                EMPLOYMENT_AGENCY,
-                SURVEYOR,
-                RELIGION,
-                MOVING_COMPANY,
-                TRAVEL_AGENT,
-                ADMINISTRATIVE,
-                FORESTRY
-        });
         defineKnownValues(TagKey.FORD, new TagValue[] {
                 STEPPING_STONES,
-                YES
+                YES,
+                BOAT
+        });
+        defineKnownValues(TagKey.SOURCE, new TagValue[] {
+                CUZK_KM,
+                SAS,
+                ARTEM,
+                NEARMAP,
+                AUTO_OS_STREET_VIEW,
+                DIBAVOD,
+                DIGITALGLOBE,
+                CADASTRE,
+                RUIAN,
+                CUZK_RUIAN,
+                YAHOO,
+                LPIS,
+                GURS
         });
         defineKnownValues(TagKey.OPERATOR, new TagValue[] {
                 CAMBIO,
-                STADTMOBIL,
-                CAMBIO,
-                BOOK_N_DRIVE,
-                TEILAUTO,
-                STADTMOBIL,
-                CITEECAR,
-                FLINKSTER,
-                DRIVE_CARSHARING
+                INDEPENDENT,
+                STADTMOBIL
         });
-        defineKnownValues(TagKey.BUSWAY, new TagValue[] {
-                LANE
+        defineKnownValues(TagKey.DENOMINATION, new TagValue[] {
+                EVANGELICAL_LUTHERAN,
+                SCOTTISH_EPISCOPAL_CHURCH,
+                MORMON,
+                REFORMED,
+                KABBALAH
         });
-        defineKnownValues(TagKey.BARRIER, new TagValue[] {
-                SALLY_PORT,
-                DITCH,
-                KISSING_GATE,
-                STILE,
-                GUARD_RAIL,
-                LIFT_GATE,
-                HEDGE,
-                RETAINING_WALL,
-                CITY_WALL,
-                TURNSTILE,
-                BOLLARD,
-                FULL_HEIGHT_TURNSTILE,
-                HEDGE_BANK,
-                HEIGHT_RESTRICTOR,
-                BLOCK,
-                TOLL_BOOTH,
-                CATTLE_GRID,
-                GATE,
-                ENTRANCE,
-                CYCLE_BARRIER,
-                FENCE,
-                WALL
+        defineKnownValues(TagKey.MOTORCYCLE, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.INDOORMARK, new TagValue[] {
+                BEACON
+        });
+        defineKnownValues(TagKey.SCHOOL, new TagValue[] {
+                BLIND
         });
         defineKnownValues(TagKey.LIT, new TagValue[] {
                 NO,
                 YES,
-                AUTOMATIC
-        });
-        defineKnownValues(TagKey.SUBSTATION, new TagValue[] {
-                TRANSMISSION,
-                CONVERTER,
-                TRACTION,
-                MINOR_DISTRIBUTION,
-                DISTRIBUTION
+                AUTOMATIC,
+                DISUSED
         });
         defineKnownValues(TagKey.CLUB, new TagValue[] {
                 AUTOMOBILE,
+                MOTORCYCLE,
                 FAN,
+                AMATEUR_RADIO,
                 SCOUT,
                 SPORT
         });
-        defineKnownValues(TagKey.MILITARY, new TagValue[] {
-                BUNKER,
-                BARRACKS,
-                NAVAL_BASE,
-                NUCLEAR_EXPLOSION_SITE,
-                AIRFIELD,
-                DANGER_AREA,
-                RANGE,
-                TRAINING_AREA
-        });
-        defineKnownValues(TagKey.ATM, new TagValue[] {
+        defineKnownValues(TagKey.DISPENSING, new TagValue[] {
+                NO,
                 YES
         });
+        defineKnownValues(TagKey.WOOD, new TagValue[] {
+                CASUARINA,
+                CONIFEROUS,
+                EUCALYPT,
+                PALM,
+                NIPA_PALM,
+                FILAO,
+                DECIDUOUS,
+                MIXED,
+                EVERGREEN
+        });
+        defineKnownValues(TagKey.MILITARY, new TagValue[] {
+                AMMUNITION,
+                CHECKPOINT,
+                BUNKER,
+                LAUNCHPAD,
+                TRENCH,
+                BARRACKS,
+                NUCLEAR_EXPLOSION_SITE,
+                AIRFIELD,
+                RANGE,
+                OFFICE,
+                TRAINING_AREA,
+                OBSTACLE_COURSE,
+                NAVAL_BASE,
+                DANGER_AREA,
+                EXCLUSION_ZONE
+        });
+        defineKnownValues(TagKey.ATM, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.LANDMARK, new TagValue[] {
+                CHIMNEY,
+                DISH_AERIAL,
+                ROCK_PINNACLE,
+                MAST,
+                CAIRN,
+                RADAR_SCANNER,
+                WINDMILL,
+                CROSS,
+                STATUE,
+                WINDSOCK,
+                DOME,
+                MEMORIAL_PLAQUE,
+                LARGE_ROCK,
+                BEACON,
+                PILLAR,
+                SPIRE,
+                OBELISK,
+                FLAGPOLE,
+                FLARE_STACK,
+                WINDMOTOR,
+                CEMETERY,
+                TOWER
+        });
         defineKnownValues(TagKey.HIGHWAY, new TagValue[] {
+                CONVEYOR,
                 DOOR,
                 CORRIDOR,
+                MINOR,
                 PRIMARY_LINK,
                 RURAL,
+                FORD,
                 REST_AREA,
                 PATH,
+                TRAIL,
                 ELEVATOR,
                 ROAD,
+                CATTLE_GRID,
+                INCLINE,
                 ABANDONED,
                 STREET_LAMP,
+                BAZAAR,
                 TERTIARY_LINK,
                 BYWAY,
+                VIA_FERRATA,
                 TERTIARY,
                 SPEED_CAMERA,
                 LIVING_STREET,
+                STILE,
                 MOTORWAY_LINK,
+                PRIORITY,
                 TRUNK,
                 CROSSING,
                 MOTORWAY,
                 STEPS,
-                RESIDENTIAL_UNCLASSIFIED,
+                RESIDENTIAL_LINK,
                 SECONDARY,
+                TRAILHEAD,
                 PASSING_PLACE,
                 MOTORWAY_JUNCTION,
                 PROPOSED,
@@ -945,15 +999,20 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 PLANNED,
                 PLATFORM,
                 UNKNOWN,
+                MOVING_WALKWAY,
+                PISTE,
                 RACEWAY,
                 STREET_LIGHT,
                 TRAFFIC_SIGNALS,
+                YIELD,
                 CONSTRUCTION,
                 SECONDARY_LINK,
                 TRACK,
                 TRAFFIC_MIRROR,
+                UNSURFACED,
                 ESCAPE,
                 GIVE_WAY,
+                LANE,
                 NOEXIT,
                 EMERGENCY_ACCESS_POINT,
                 BRIDLEWAY,
@@ -961,290 +1020,1376 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 MINI_ROUNDABOUT,
                 SERVICES,
                 DISUSED,
+                INCLINE_STEEP,
+                CYCLEWAY_LINK,
+                SPEED_DISPLAY,
                 RESIDENTIAL,
                 MILESTONE,
                 SERVICE,
+                SKYWAY,
+                TRAFFIC_CALMING,
                 PEDESTRIAN,
+                TOLL_BOOTH,
                 BUS_STOP,
-                RAZED
+                GATE,
+                GREEN_LANE,
+                RAZED,
+                TOLL_GANTRY
+        });
+        defineKnownValues(TagKey.AREA, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.SIDEWALK, new TagValue[] {
+                SIDEPATH,
+                SEPARATE
+        });
+        defineKnownValues(TagKey.NOADDRESS, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.MUSEUM, new TagValue[] {
+                ART,
+                CHILDREN,
+                NATURE,
+                OPEN_AIR,
+                MILITARY,
+                HISTORY,
+                LIVING_HISTORY,
+                RAILWAY,
+                TECHNOLOGY,
+                TRANSPORT,
+                LOCAL,
+                ARCHAEOLOGICAL
+        });
+        defineKnownValues(TagKey.ELECTRIFIED, new TagValue[] {
+                CONTACT_LINE,
+                RAIL
+        });
+        defineKnownValues(TagKey.RUINS, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.FOOTWAY, new TagValue[] {
+                SIDEWALK,
+                LINK,
+                CROSSING
+        });
+        defineKnownValues(TagKey.MARITIME, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.CROP, new TagValue[] {
+                NO,
+                CORN,
+                HOP,
+                BANANAS,
+                RAPE,
+                TEA,
+                GRASS,
+                CASSAVA,
+                WHEAT,
+                SOY,
+                ASPARGUS,
+                HAY,
+                FLOWERS,
+                OATS,
+                YES,
+                STRAWBERRY,
+                BARLEY,
+                GRAPE,
+                RICE,
+                MAIZE,
+                SUNFLOWER,
+                CEREAL,
+                COFFEE,
+                ASPARAGUS,
+                SUGAR,
+                RYE
+        });
+        defineKnownValues(TagKey.RFR, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.WHEELCHAIR, new TagValue[] {
+                NO,
+                LIMITED,
+                YES
+        });
+        defineKnownValues(TagKey.SHOP, new TagValue[] {
+                ELECTRONICS,
+                BICYCLE,
+                GAMBLING,
+                BAG,
+                PAINT,
+                CONVENIENCE,
+                CAR_REPAIR,
+                COPYSHOP,
+                CHEESE,
+                LOCKSMITH,
+                ROBOT,
+                TEA,
+                MUSIC,
+                TOOL_HIRE,
+                VIDEO_GAMES,
+                FARM,
+                NEWSAGENT,
+                HUNTING,
+                SWIMMING_POOL,
+                ENERGY,
+                ALCOHOL,
+                MALL,
+                LIGHTING,
+                HOUSEWARE,
+                PHOTOGRAPHY,
+                WINE,
+                HOBBY,
+                PAWNBROKER,
+                VACUUM_CLEANER,
+                DEPARTMENT_STORE,
+                SCUBA_DIVING,
+                MUSICAL_INSTRUMENTS,
+                MARINE,
+                BABY_CARE,
+                GOLF,
+                HAIRDRESSER,
+                GARDEN_CENTRE,
+                FROZEN_FOOD,
+                HERBALIST,
+                KITCHEN,
+                TROPHY,
+                SEAFOOD,
+                CERAMICS,
+                ART,
+                HEALTH_FOOD,
+                GLAZIERY,
+                PHOTO,
+                LOTTERY,
+                SHOES,
+                FOOD,
+                PRINTING,
+                FLOWER,
+                RELIGION,
+                FISHMONGER,
+                PERFUMERY,
+                FISH,
+                GROCERY,
+                PET_GROOMING,
+                RADIOTECHNICS,
+                FASHION,
+                BED,
+                INSURANCE,
+                MEDICAL,
+                WOOL,
+                BEAUTY,
+                FURNACE,
+                GENERAL_STORES,
+                MOTORCYCLE,
+                DIY,
+                FURNITURE,
+                SECOND_HAND,
+                FLORIST,
+                FUNERAL_DIRECTORS,
+                TOBACCO,
+                WATCHES,
+                ATV,
+                GLASS,
+                AUDIOLOGIST,
+                FIREARMS,
+                SHOE_REPAIR,
+                FABRICS,
+                LAUNDROMAT,
+                SOLARIUM,
+                NUTS,
+                CARPET,
+                PHARMACY,
+                PARTY,
+                FRAME,
+                SALON,
+                APPLIANCE,
+                FLOORING,
+                HEARING_AIDS,
+                VEHICLES,
+                VIDEO,
+                PERFUME,
+                COLLECTOR,
+                KITCHENWARE,
+                HABERDASHERY,
+                PASTA,
+                CHANDLER,
+                GAS,
+                MUSICAL_INSTRUMENT,
+                CAR_SERVICE,
+                NUTRITION_SUPPLEMENTS,
+                ORGANIC,
+                TOYS,
+                TICKET,
+                EDIBLE_SEEDS,
+                YES,
+                PHOTO_STUDIO,
+                PYROTECHNICS,
+                WINDOWS,
+                POTTERY,
+                PRINTER_INK,
+                COFFEE,
+                WINDOW,
+                KIOSK,
+                GIFT,
+                MILITARY_SURPLUS,
+                EQUESTRIAN,
+                GUNS,
+                TRAVEL_AGENCY,
+                VARIETY_STORE,
+                DISCOUNT,
+                WIGS,
+                ICE_CREAM,
+                SKI,
+                SHOPPING_CENTRE,
+                TILES,
+                GREENGROCER,
+                BUSINESS_MACHINES,
+                GAMES,
+                ANTIQUES,
+                MODEL,
+                BATHROOM_FURNISHING,
+                WINERY,
+                GALLERY,
+                PET,
+                HARDWARE,
+                BEVERAGES,
+                DELICATESSEN,
+                FLOWERS,
+                SPARE_PARTS,
+                BAKERY,
+                BOUTIQUE,
+                ELECTRICAL,
+                LEATHER,
+                VACANT,
+                DOORS,
+                PROVISIONS,
+                TATTOO,
+                BOOKS,
+                FABRIC,
+                EROTIC,
+                AUTO_PARTS,
+                WEAPONS,
+                CHOCOLATE,
+                GUN,
+                WINDOW_BLIND,
+                HAIRDRESSER_SUPPLY,
+                HOOKAH,
+                CANOE_HIRE,
+                TAILOR,
+                FIREWORKS,
+                FIREPLACE,
+                SUPERMARKET,
+                TRAILER,
+                COMPUTER,
+                WHOLESALE,
+                LAUNDRY,
+                HEARING_AID_DISPENSER,
+                SEWING,
+                CAMERA,
+                SOUVENIR,
+                TOY,
+                TYRES,
+                BREWING_SUPPLIES,
+                HEALTH,
+                GENERAL_STORE,
+                OPTICIAN,
+                BOAT,
+                RENTAL,
+                COUNTRY_STORE,
+                PASTRY,
+                CAR_PARTS,
+                DRY_CLEANING,
+                MONEY_LENDER,
+                DAIRY,
+                BOARD,
+                JETSKI,
+                HVAC,
+                LAMPS,
+                CELL_PHONES,
+                FUEL,
+                CRAFT,
+                BUTCHER,
+                DELI,
+                FREE_FLYING,
+                SHIP_CHANDLER,
+                CHARITY,
+                BOOKMAKER,
+                STATIONERY,
+                ANTIQUE,
+                COMMUNICATION,
+                MASSAGE,
+                JEWELRY,
+                BABY_GOODS,
+                GARDEN_FURNITURE,
+                INTERIOR_DECORATION,
+                MEDICAL_SUPPLY,
+                STORAGE_RENTAL,
+                WATER,
+                CAFE,
+                HIFI,
+                SNOWMOBILE,
+                SPICES,
+                CURTAIN,
+                TICKETS,
+                CANDLES,
+                MONEYLENDER,
+                CONFECTIONERY,
+                OFFICE_SUPPLIES,
+                COSMETICS,
+                GENERAL,
+                CAR,
+                MOBILE_PHONE,
+                DIVE,
+                ESTATE_AGENT,
+                MOTORCYCLE_REPAIR,
+                CHEMIST,
+                DOITYOURSELF,
+                SPORTS,
+                FISHING,
+                JUNK_YARD,
+                SYSTEMBOLAGET,
+                CANNABIS,
+                BETTING,
+                CLOTHES,
+                MOBILE_HOME,
+                OUTDOOR,
+                AGRARIAN,
+                JEWELLERY,
+                TRADE,
+                CARAVAN,
+                _BUSINESS_MACHINES,
+                ANIME
+        });
+        defineKnownValues(TagKey.FLOOD_MARK, new TagValue[] {
+                PLAQUE,
+                PAINTING
+        });
+        defineKnownValues(TagKey.DISTILLERY, new TagValue[] {
+                WHISKY
+        });
+        defineKnownValues(TagKey.HAZARD_PRONE, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.LANDCOVER, new TagValue[] {
+                GRAVEL,
+                GRASS,
+                TREES
+        });
+        defineKnownValues(TagKey.PILOTAGE, new TagValue[] {
+                BOARDING_POINT,
+                OFFICE
+        });
+        defineKnownValues(TagKey.ARTWORK_TYPE, new TagValue[] {
+                MURAL,
+                PAINTING,
+                STATUE,
+                SCULPTURE,
+                ARCHITECTURE,
+                STONE
+        });
+        defineKnownValues(TagKey.SEAMARK, new TagValue[] {
+                BEACON,
+                BUOY,
+                LIGHTHOUSE,
+                ANCHORAGE,
+                LANDMARK
+        });
+        defineKnownValues(TagKey.DISPENSER, new TagValue[] {
+                EXCREMENT_BAGS
+        });
+        defineKnownValues(TagKey.PSV, new TagValue[] {
+                DESIGNATED,
+                YES
+        });
+        defineKnownValues(TagKey.MANHOLE, new TagValue[] {
+                TELECOM,
+                DRAIN
+        });
+        defineKnownValues(TagKey.MEMORIAL, new TagValue[] {
+                GHOST_BIKE,
+                PLAQUE,
+                BLUE_PLAQUE,
+                OBELISK,
+                STELE,
+                STATUE,
+                BUST,
+                STORM_SURGE_POST,
+                STOLPERSTEIN,
+                STONE,
+                WAR_MEMORIAL
+        });
+        defineKnownValues(TagKey.LINES, new TagValue[] {
+                PHONE
+        });
+        defineKnownValues(TagKey.POWER_SOURCE, new TagValue[] {
+                WASTE,
+                HYDRO,
+                OIL,
+                BIOFUEL,
+                GAS,
+                COAL,
+                NUCLEAR,
+                WIND
+        });
+        defineKnownValues(TagKey.VENDING_MACHINE, new TagValue[] {
+                FUEL
+        });
+        defineKnownValues(TagKey.DELIVERY, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.HISTORIC, new TagValue[] {
+                ROMAN_ROAD,
+                MINE_SHAFT,
+                CASTLE,
+                CITYWALLS,
+                CANNON,
+                CHARCOAL_PILE,
+                HIGHWATER_MARK,
+                PALEONTOLOGICAL_SITE,
+                SHIP,
+                TREE_SHRINE,
+                BUILDING,
+                CITY_WALL,
+                ARTIFACT,
+                MANOR,
+                WRECK,
+                CITY_GATE,
+                PILLORY,
+                LOCOMOTIVE,
+                BOUNDARY_STONE,
+                FARM,
+                RUNE_STONE,
+                OPTICAL_TELEGRAPH,
+                ABANDONED,
+                WAYSIDE_SHRINE,
+                HERITAGE,
+                RAILWAY_CAR,
+                RUINS,
+                SHIELING,
+                GALLOWS,
+                ARCHAEOLOGICAL_SITE,
+                BOMB_CRATER,
+                FLOOD_MARK,
+                CASTLE_WALL,
+                CHURCH,
+                MONUMENT,
+                AQUEDUCT,
+                MEMORIAL,
+                EVENT,
+                TANK,
+                MINE,
+                TOMB,
+                YES,
+                AIRCRAFT,
+                WAYSIDE_CROSS,
+                STONE,
+                PA,
+                MONASTERY,
+                MILESTONE,
+                BATTLEFIELD,
+                FORT
+        });
+        defineKnownValues(TagKey.WATERWAY, new TagValue[] {
+                WEIR,
+                DERELICT_CANAL,
+                DRYSTREAM,
+                LAKEBANK,
+                DITCH,
+                FUEL,
+                RIVERBANK,
+                DRAIN,
+                DAM,
+                BOATYARD,
+                STREAM_END,
+                LOCK_GATE,
+                STREAM,
+                WATER_POINT,
+                WATERFALL,
+                CONSTRUCTION,
+                BOAT_LIFT,
+                CANAL,
+                DOCK,
+                PRESSURISED,
+                BROOK,
+                RAPIDS,
+                FISH_PASS,
+                SPILLWAY,
+                OFFSHORE_FIELD,
+                TURNING_POINT,
+                MILESTONE,
+                ESTUARY,
+                FAIRWAY,
+                WADI,
+                DEEP_WELL,
+                SEAWAY,
+                RIVER,
+                SANITARY_DUMP_STATION,
+                PORTAGE,
+                DREDGED_AREA,
+                MOORING,
+                SWEPT_AREA
+        });
+        defineKnownValues(TagKey.MOTORROAD, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.DISUSED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.REAL_CIDER, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.SUPERVISED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.SERVICE, new TagValue[] {
+                SIDING,
+                BUS,
+                CROSSOVER,
+                DRIVEWAY,
+                YARD,
+                EMERGENCY_ACCESS,
+                AIRCRAFT_CONTROL,
+                DRIVE_THROUGH,
+                PARKING_AISLE,
+                PARTS,
+                ALLEY,
+                SPUR
+        });
+        defineKnownValues(TagKey.WINTER_ROAD, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.DEMOLISHED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.DRINKING_WATER, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.LOCATION, new TagValue[] {
+                CAVE,
+                BRIDGE,
+                TUNNEL
+        });
+        defineKnownValues(TagKey.TUNNEL, new TagValue[] {
+                CULVERT,
+                BUILDING_PASSAGE,
+                YES,
+                FLOODED
+        });
+        defineKnownValues(TagKey.SEGREGATED, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.PARKING, new TagValue[] {
+                SURFACE,
+                UNDERGROUND
+        });
+        defineKnownValues(TagKey.HAZARD_TYPE, new TagValue[] {
+                AVALANCHE,
+                LANDSLIDE,
+                FLOOD
+        });
+        defineKnownValues(TagKey.SITE_TYPE, new TagValue[] {
+                MEGALITH,
+                ROMAN_CIRCUS,
+                TUMULUS,
+                ROMAN_VILLA,
+                CITY,
+                MINILITH,
+                PETROGLYPH,
+                HUT_CIRCLE,
+                BIGSTONE,
+                FORTIFICATION,
+                NECROPOLIS,
+                SETTLEMENT
+        });
+        defineKnownValues(TagKey.BIN, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.USAGE, new TagValue[] {
+                FLOWLINE,
+                PENSTOCK,
+                TOURISM,
+                DISTRIBUTION,
+                GATHERING,
+                SPILLWAY,
+                FLARE_HEADER,
+                INDUSTRIAL,
+                IRRIGATION,
+                TRANSMISSION,
+                TAILRACE,
+                MILITARY,
+                FACILITY,
+                HEADRACE,
+                INJECTION
+        });
+        defineKnownValues(TagKey.TYPE, new TagValue[] {
+                BOUNDARY,
+                WATERSHED,
+                LAND_AREA,
+                PUBLIC_TRANSPORT,
+                AUTOPASS,
+                BUILDING,
+                NETWORK,
+                DESTINATION_SIGN,
+                FIXED_POINT,
+                STREET,
+                GROUP,
+                AREA,
+                TRIANGULATION,
+                TMC_POINT,
+                WATERWAY,
+                ENFORCEMENT,
+                BENCHMARK,
+                MULTIPOLYGON,
+                LANE_RESTRICTION,
+                SITE,
+                ROUTE,
+                DEFAULTS,
+                LEADING_LIGHT,
+                ROUTE_MASTER,
+                STOP,
+                PERSON,
+                TRANSIT,
+                OBSERVATION_SPOT,
+                RESTRICTION,
+                LEADING_LINE,
+                BRIDGE,
+                TRAFFIC_SIGNALS_SET,
+                TUNNEL
+        });
+        defineKnownValues(TagKey.ICE_CREAM, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.MAXHEIGHT, new TagValue[] {
+                DEFAULT
+        });
+        defineKnownValues(TagKey.LEAF_CYCLE, new TagValue[] {
+                SEMI_DECIDUOUS,
+                SEMI_EVERGREEN,
+                DECIDUOUS,
+                MIXED,
+                EVERGREEN
+        });
+        defineKnownValues(TagKey.RAMSAR, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.POLITICAL_DIVISION, new TagValue[] {
+                CANTON
+        });
+        defineKnownValues(TagKey.DEFENSIVE, new TagValue[] {
+                BERGFRIED,
+                DONJON,
+                KEEP
+        });
+        defineKnownValues(TagKey.LOCK, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.CAMP_SITE, new TagValue[] {
+                RECEPTION
+        });
+        defineKnownValues(TagKey.INCLINE, new TagValue[] {
+                UP,
+                DOWN
+        });
+        defineKnownValues(TagKey.ABANDONED, new TagValue[] {
+                YES,
+                VILLAGE
+        });
+        defineKnownValues(TagKey.TWO_SIDED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.SOCIAL_FACILITY, new TagValue[] {
+                ASSISTED_LIVING,
+                NURSING_HOME,
+                DAY_CARE,
+                AMBULATORY_CARE,
+                SHELTER,
+                GROUP_HOME,
+                OUTREACH,
+                WORKSHOP,
+                FOOD_BANK,
+                CLOTHING_BANK,
+                HOSPICE,
+                SOUP_KITCHEN
+        });
+        defineKnownValues(TagKey.SURFACE, new TagValue[] {
+                CONCRETE,
+                RED_SAND,
+                PEBBLESTONE,
+                COMPACTED,
+                FINE_GRAVEL,
+                ROMAN_PAVING,
+                UNHEWN_COBBLESTONE,
+                UNPAVED,
+                COBBLESTONE,
+                GRASS,
+                CONCRETE_LANES,
+                WOOD,
+                PAVED,
+                PAVING_STONES_30,
+                CHIPSEAL,
+                PAVING_STONES,
+                CONCRETE_PLATES,
+                GRASS_PAVER,
+                SETT,
+                DIRT,
+                METAL,
+                ASPHALT,
+                GRAVEL,
+                SAND,
+                PAVING_STONES_20,
+                EARTH,
+                GROUND,
+                ICE_ROAD,
+                MUD
+        });
+        defineKnownValues(TagKey.NATURAL, new TagValue[] {
+                REEF,
+                CAVE,
+                HOT_SPRING,
+                TIDAL,
+                MORAINE,
+                RIVERBANK,
+                LANDSLIDE,
+                WATER,
+                ESKER,
+                STONE,
+                PALAEONTOLOGICAL_SITE,
+                ROCK,
+                SPRING,
+                SAND,
+                FJORD,
+                ROCKS,
+                GRASS,
+                BEACH,
+                GEOTHERMAL,
+                WOOD,
+                MUD
+        });
+        defineKnownValues(TagKey.PRIORITY, new TagValue[] {
+                REGIONAL,
+                NATIONAL,
+                LOCAL
+        });
+        defineKnownValues(TagKey.CROSSING, new TagValue[] {
+                ZEBRA,
+                NO,
+                TRAFFIC_SIGNALS,
+                UNCONTROLLED,
+                ISLAND,
+                UNMARKED,
+                UNKNOWN
+        });
+        defineKnownValues(TagKey.PASSENGER, new TagValue[] {
+                NO,
+                SUBURBAN,
+                URBAN,
+                REGIONAL,
+                YES,
+                NATIONAL,
+                INTERNATIONAL,
+                LOCAL
+        });
+        defineKnownValues(TagKey.ESPERANTO, new TagValue[] {
+                ESPERANTO
+        });
+        defineKnownValues(TagKey.ANIMATED, new TagValue[] {
+                WINDING_POSTERS,
+                TRIVISION_BLADES
+        });
+        defineKnownValues(TagKey.INDOOR, new TagValue[] {
+                AREA,
+                CORRIDOR,
+                WALL
+        });
+        defineKnownValues(TagKey.BASEBALL, new TagValue[] {
+                SOFTBALL,
+                INFIELD
+        });
+        defineKnownValues(TagKey.VALVE, new TagValue[] {
+                GATE
+        });
+        defineKnownValues(TagKey.SEASONAL, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.TOURISM, new TagValue[] {
+                LEAN_TO,
+                YES,
+                HOTEL,
+                ARTWORK,
+                PICNIC_SITE,
+                RESORT,
+                GALLERY
+        });
+        defineKnownValues(TagKey.TRAFFIC_SIGN, new TagValue[] {
+                STOP
+        });
+        defineKnownValues(TagKey.PUBLIC_TRANSPORT, new TagValue[] {
+                PAY_SCALE_AREA,
+                STATION,
+                STOP_AREA,
+                STOP_POSITION,
+                POLE,
+                PLATFORM,
+                STOP_AREA_GROUP
+        });
+        defineKnownValues(TagKey.HEALTHCARE, new TagValue[] {
+                LABORATORY,
+                MIDWIFE,
+                BLOOD_DONATION,
+                NUTRITION_COUNSELING,
+                DENTIST
+        });
+        defineKnownValues(TagKey.VEHICLE, new TagValue[] {
+                DESTINATION
+        });
+        defineKnownValues(TagKey.GOVERNMENT, new TagValue[] {
+                REGISTER_OFFICE,
+                YOUTH_WELFARE_DEPARTMENT,
+                AUDIT,
+                CUSTOMS,
+                ARCHIVE,
+                TAX,
+                CADASTER,
+                PROSECUTOR,
+                MINISTRY,
+                HEALTHCARE,
+                STATISTICS
+        });
+        defineKnownValues(TagKey.HGV, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.LANDUSE, new TagValue[] {
+                HARBOUR,
+                COMMERCIAL,
+                TRAFFIC_ISLAND,
+                DEPOT,
+                TREES,
+                RETAIL,
+                PISTE,
+                WHOLESALE,
+                PLOT,
+                GRASS,
+                STREET,
+                CONSTRUCTION,
+                FARM,
+                MILITARY,
+                WOOD,
+                RAILWAY,
+                CEMETERY,
+                PRISON,
+                SALT_POND,
+                GARAGES,
+                INDUSTRIAL,
+                RESIDENTIAL,
+                PORT,
+                GRAVE_YARD,
+                RECREATION_GROUND
+        });
+        defineKnownValues(TagKey.TELECOM, new TagValue[] {
+                REMOTE_DIGITAL_TERMINAL
+        });
+        defineKnownValues(TagKey.POWER, new TagValue[] {
+                LINE,
+                MARKER,
+                CONVERTER,
+                STATION,
+                GENERATOR,
+                TERMINAL,
+                POLE,
+                CABLE,
+                SWITCH,
+                TOWER
+        });
+        defineKnownValues(TagKey.PLACE, new TagValue[] {
+                AREA,
+                SQUARE,
+                CITY,
+                PLOT,
+                ISLAND,
+                FARM,
+                SHIELING,
+                VILLAGE
+        });
+        defineKnownValues(TagKey.LEISURE, new TagValue[] {
+                DANCING,
+                TRAMPOLINE_PARK,
+                SUMMER_CAMP,
+                GAMBLING,
+                CASINO,
+                ARENA,
+                BATHING_PLACE,
+                BLEACHERS,
+                MAZE,
+                SAILING_CLUB,
+                ESCAPE_GAME,
+                HACKERSPACE,
+                SOCCER_GOLF,
+                BEACH_RESORT,
+                SHOOTING_GROUND,
+                CLUB,
+                TABLE_TENNIS_TABLE,
+                STADIUM,
+                PITCH,
+                SLIPWAY,
+                LANDSCAPE_RESERVE,
+                PICNIC_SITE,
+                RESORT,
+                DANCE,
+                SWIMMING_POOL,
+                SOCIAL_CLUB,
+                SPORTS_CENTRE,
+                HOT_SPRING,
+                PICNIC,
+                SKI_PLAYGROUND,
+                BIRD_HIDE,
+                BBQ,
+                WILDLIFE_HIDE,
+                FOOT_BATH,
+                MARINA,
+                SPORTS_HALL,
+                SWIMMING_AREA,
+                DISC_GOLF_COURSE,
+                PADDLING_POOL,
+                VIDEO_ARCADE,
+                NATURE_RESERVE,
+                ADULT_GAMING_CENTRE,
+                GOLF_COURSE,
+                BOWLING_ALLEY,
+                ICE_RINK,
+                TANNING_SALON,
+                COMMON,
+                FITNESS_STATION,
+                SAUNA,
+                PLAYGROUND,
+                HORSE_RIDING,
+                OUTDOOR_SEATING,
+                TRACK,
+                PARK,
+                BANDSTAND,
+                AMUSEMENT_ARCADE,
+                FISHING,
+                PICNIC_TABLE,
+                TURKISH_BATH,
+                FITNESS_CENTRE,
+                FISH_SPA,
+                WATER_PARK,
+                DOG_PARK,
+                BEACH,
+                RECREATION_GROUND,
+                GARDEN,
+                MINIATURE_GOLF,
+                FIREPIT,
+                RED_LIGHT_DISTRICT
+        });
+        defineKnownValues(TagKey.AERIALWAY, new TagValue[] {
+                PYLON,
+                STATION
+        });
+        defineKnownValues(TagKey.EDIT_GROUP, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.CENTER_TURN_LANE, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.ONEWAY, new TagValue[] {
+                NO,
+                ALTERNATING,
+                YES,
+                REVERSIBLE,
+                FALSE,
+                TRUE
+        });
+        defineKnownValues(TagKey.RENTAL, new TagValue[] {
+                SKI,
+                TRAILER,
+                STRANDKORB
+        });
+        defineKnownValues(TagKey.PIPELINE, new TagValue[] {
+                MARKER
+        });
+        defineKnownValues(TagKey.SITE, new TagValue[] {
+                PISTE
+        });
+        defineKnownValues(TagKey.SMOOTHNESS, new TagValue[] {
+                VERY_BAD,
+                BAD,
+                EXCELLENT,
+                HORRIBLE,
+                INTERMEDIATE,
+                GOOD,
+                IMPASSABLE,
+                VERY_HORRIBLE
+        });
+        defineKnownValues(TagKey.SUB_SEA, new TagValue[] {
+                REEF
+        });
+        defineKnownValues(TagKey.TRAFFIC_CALMING, new TagValue[] {
+                HUMP,
+                DOUBLE_DIP,
+                CHOKER,
+                CUSHION,
+                ISLAND,
+                YES,
+                BUMP,
+                DIP,
+                CHICANE,
+                RUMBLE_STRIP,
+                TABLE
+        });
+        defineKnownValues(TagKey.CUTTING, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.MOORING, new TagValue[] {
+                COMMERCIAL,
+                YES,
+                FERRY
+        });
+        defineKnownValues(TagKey.FENCED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.MICROBREWERY, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.EXPRESSWAY, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.COCKTAILS, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.FEE, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.INTERMITTENT, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.CRAFT, new TagValue[] {
+                HVAC,
+                OIL_MILL,
+                BAKERY,
+                PRINTER,
+                GLAZIERY,
+                GRINDING_MILL,
+                TAILOR,
+                CONFECTIONERY,
+                OPTICIAN,
+                CAR_REPAIR,
+                LEATHER,
+                LOCKSMITH,
+                POTTERY,
+                SAWMILL,
+                BREWERY,
+                SEWING,
+                MUSICAL_INSTRUMENT,
+                WINERY
+        });
+        defineKnownValues(TagKey.OFFICE, new TagValue[] {
+                INSURANCE,
+                ADOPTION_AGENCY,
+                CAMPING,
+                ACCOUNTANT,
+                ENERGY_SUPPLIER,
+                TAX_ADVISOR,
+                QUANGO,
+                TELECOMMUNICATION,
+                RESEARCH,
+                REALTOR,
+                DIPLOMATIC,
+                CHARITY,
+                PARISH,
+                ADVERTISING_AGENCY,
+                GUIDE,
+                THERAPIST,
+                EMPLOYMENT_AGENCY,
+                SURVEYOR,
+                TAX,
+                IT,
+                MOVING_COMPANY,
+                NOTARY,
+                OCCUPATIONAL_SAFETY,
+                NEWSPAPER,
+                EDUCATIONAL_INSTITUTION,
+                COWORKING,
+                WATER_UTILITY,
+                FINANCIAL,
+                ARCHITECT,
+                ASSOCIATION,
+                LOGISTICS,
+                FOUNDATION,
+                POLITICAL_PARTY,
+                GOVERNMENT,
+                PROPERTY_MANAGEMENT,
+                GEODESIST,
+                NGO,
+                COMPANY,
+                ESTATE_AGENT,
+                REAL_ESTATE_AGENT,
+                LAWYER,
+                TOURIST_ACCOMMODATION,
+                YES,
+                ENGINEER,
+                RELIGION,
+                TRAVEL_AGENT,
+                ADMINISTRATIVE,
+                VISA,
+                PRIVATE_INVESTIGATOR,
+                FORESTRY,
+                REGISTER
+        });
+        defineKnownValues(TagKey.BUSWAY, new TagValue[] {
+                OPPOSITE_LANE,
+                LANE
+        });
+        defineKnownValues(TagKey.BARRIER, new TagValue[] {
+                DITCH,
+                YES,
+                KERB,
+                TOLL_BOOTH,
+                CATTLE_GRID,
+                GATE,
+                STILE,
+                ENTRANCE,
+                WALL,
+                CHICANE,
+                CITY_WALL
+        });
+        defineKnownValues(TagKey.ADMIN_LEVEL, new TagValue[] {
+                ABORIGINAL_LAND
+        });
+        defineKnownValues(TagKey.SUBSTATION, new TagValue[] {
+                INDUSTRIAL,
+                TRANSMISSION,
+                CONVERTER,
+                COMPENSATION,
+                TRACTION,
+                MINOR_DISTRIBUTION,
+                DISTRIBUTION,
+                MEASUREMENT,
+                TRANSITION
+        });
+        defineKnownValues(TagKey.RADAR_TRANSPONDER, new TagValue[] {
+                RAMARK
         });
         defineKnownValues(TagKey.ENTRANCE, new TagValue[] {
+                EXIT,
+                SERVICE,
                 YES,
+                EMERGENCY,
                 MAIN,
-                STAIRCASE
+                STAIRCASE,
+                HOME
+        });
+        defineKnownValues(TagKey.COMMUNICATION, new TagValue[] {
+                LINE
+        });
+        defineKnownValues(TagKey.CLIMBING, new TagValue[] {
+                ROUTE
+        });
+        defineKnownValues(TagKey.TRAFFIC, new TagValue[] {
+                SUBURBAN,
+                URBAN,
+                REGIONAL,
+                NATIONAL,
+                LOCAL
+        });
+        defineKnownValues(TagKey.WASTE, new TagValue[] {
+                DOG_EXCREMENT
         });
         defineKnownValues(TagKey.WETLAND, new TagValue[] {
-                REEDBED,
-                SALTERN,
-                WET_MEADOW,
-                TIDALFLAT,
-                BOG,
-                MANGROVE,
-                SWAMP,
-                MUD,
-                SALTMARSH,
-                STRING_BOG,
-                FEN,
-                MARSH
+                MUD
+        });
+        defineKnownValues(TagKey.RESOURCE, new TagValue[] {
+                GRAVEL,
+                SAND
         });
         defineKnownValues(TagKey.VENDING, new TagValue[] {
-                BOTTLE_RETURN,
-                BREAD,
+                ELECTRONICS,
+                FUEL,
+                PHOTOS,
+                TOLL,
+                ICE_CREAM,
+                INK_CARTRIDGES,
+                PARCEL_PICKUP,
+                ADMISSION_TICKETS,
+                ANIMAL_FEED,
+                NEWS_PAPERS,
                 FLOWERS,
-                PARCEL_PICKUP_PARCEL_MAIL_IN,
-                TOYS,
                 ELONGATED_COIN,
                 MILK,
+                NEWSPAPERS,
+                FEMININE_HYGIENE,
+                WATER,
+                BOOKS,
+                SYRINGES,
+                CIGARETTES,
+                UMBRELLAS,
+                SEX_TOYS,
+                BOTTLE_RETURN,
+                CONDOMS,
+                DRINKS,
                 BICYCLE_TUBE,
                 CANDLES,
-                NEWSPAPERS,
-                WATER,
-                FOOD,
-                ICE_CREAM,
-                CHEWING_GUMS,
-                PARCEL_PICKUP,
-                COFFEE,
+                PET_FOOD,
+                RAW_MILK,
+                PUBLIC_TRANSPORT_PLANS,
+                BYCICLE_TUBE,
+                LAUNDRY_DETERGENT,
                 PARKING_TICKETS,
-                ANIMAL_FEED,
-                EXCREMENT_BAGS,
-                PUBLIC_TRANSPORT_TICKETS,
                 PARCEL_MAIL_IN,
-                SEX_TOYS,
-                STAMPS
+                STAMPS,
+                CHEMIST,
+                FIRST_AID,
+                ART,
+                BREAD,
+                TOYS,
+                PHOTO,
+                FISHING_BAIT,
+                ICE_CUBES,
+                FOOD,
+                TELEPHONE_VOUCHERS,
+                CHEWING_GUMS,
+                COFFEE,
+                FISHING_TACKLE,
+                SWEETS,
+                EXCREMENT_BAGS,
+                PUBLIC_TRANSPORT_TICKETS
+        });
+        defineKnownValues(TagKey.BASIN, new TagValue[] {
+                DETENTION,
+                INFILTRATION,
+                RETENTION
         });
         defineKnownValues(TagKey.WATER, new TagValue[] {
-                POND,
-                WASTEWATER,
-                OXBOW,
-                LOCK,
+                TIDAL,
                 CANAL,
-                RESERVOIR,
-                RIVER,
-                LAKE,
-                LAGOON
+                RIVER
         });
         defineKnownValues(TagKey.LEVEL_CROSSING, new TagValue[] {
                 AUTOMATIC_BARRIER,
                 TRAFFIC_SIGNALS,
                 UNCONTROLLED
         });
-        defineKnownValues(TagKey.MUSEUM, new TagValue[] {
-                CHILDREN,
-                NATURE,
-                OPEN_AIR,
-                HISTORY,
-                RAILWAY,
-                LOCAL
+        defineKnownValues(TagKey.COVERED, new TagValue[] {
+                YES
         });
-        defineKnownValues(TagKey.FOOTWAY, new TagValue[] {
-                SIDEWALK,
-                CROSSING
+        defineKnownValues(TagKey.REAL_ALE, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.SEAWAY, new TagValue[] {
+                CARGO_PORT,
+                CRUISE_PORT,
+                FISHING_PORT,
+                FERRY_PORT
+        });
+        defineKnownValues(TagKey.MOTORCYCLE_FRIENDLY, new TagValue[] {
+                YES
         });
         defineKnownValues(TagKey.CYCLEWAY, new TagValue[] {
+                NO,
+                SIDEPATH,
                 OPPOSITE_TRACK,
-                SHARE_BUSWAY,
+                PROPOSED,
                 OPPOSITE_LANE,
-                OPPOSITE,
                 TRACK,
+                CROSSING,
                 LANE
         });
         defineKnownValues(TagKey.BOUNDARY, new TagValue[] {
+                HISTORIC,
+                ABORIGINAL_LANDS,
+                TIMEZONE,
+                HEALTH,
+                LOCAL_AUTHORITY,
+                POLITICAL,
+                MILITARY_DISTRICT,
+                LOW_EMISSION_ZONE,
+                FOREST_COMPARTMENT,
+                URBAN,
                 ADMINISTRATIVE,
+                MARKER,
                 NATIONAL_PARK,
+                CIVIL,
+                NATIONAL,
+                MARITIME,
                 PROTECTED_AREA,
                 RELIGIOUS_ADMINISTRATION,
                 POSTAL_CODE,
-                WATER_PROTECTION_AREA
-        });
-        defineKnownValues(TagKey.SHOP, new TagValue[] {
-                GIFT,
-                ELECTRONICS,
-                EQUESTRIAN,
-                BICYCLE,
-                TRAVEL_AGENCY,
-                VARIETY_STORE,
-                BAG,
-                PAINT,
-                WIGS,
-                CONVENIENCE,
-                CAR_REPAIR,
-                COPYSHOP,
-                ICE_CREAM,
-                CHEESE,
-                LOCKSMITH,
-                ROBOT,
-                TEA,
-                TILES,
-                MUSIC,
-                GREENGROCER,
-                VIDEO_GAMES,
-                FARM,
-                ANTIQUES,
-                MODEL,
-                NEWSAGENT,
-                BATHROOM_FURNISHING,
-                HUNTING,
-                PET,
-                SWIMMING_POOL,
-                HARDWARE,
-                ALCOHOL,
-                BEVERAGES,
-                SPARE_PARTS,
-                BAKERY,
-                BOUTIQUE,
-                MALL,
-                LEATHER,
-                VACANT,
-                HOUSEWARE,
-                TATTOO,
-                BOOKS,
-                FABRIC,
-                EROTIC,
-                WEAPONS,
-                WINE,
-                CHOCOLATE,
-                PAWNBROKER,
-                WINDOW_BLIND,
-                DEPARTMENT_STORE,
-                HAIRDRESSER_SUPPLY,
-                TAILOR,
-                SCUBA_DIVING,
-                FIREPLACE,
-                SUPERMARKET,
-                COMPUTER,
-                GOLF,
-                HAIRDRESSER,
-                WHOLESALE,
-                LAUNDRY,
-                GARDEN_CENTRE,
-                FROZEN_FOOD,
-                SEWING,
-                CAMERA,
-                HERBALIST,
-                KITCHEN,
-                TROPHY,
-                SEAFOOD,
-                TYRES,
-                CERAMICS,
-                ART,
-                HEALTH_FOOD,
-                PHOTO,
-                OPTICIAN,
-                SHOES,
-                RELIGION,
-                PASTRY,
-                PERFUMERY,
-                CAR_PARTS,
-                DRY_CLEANING,
-                DAIRY,
-                FASHION,
-                BED,
-                WOOL,
-                BEAUTY,
-                LAMPS,
-                CRAFT,
-                BUTCHER,
-                DELI,
-                MOTORCYCLE,
-                CHARITY,
-                FURNITURE,
-                SECOND_HAND,
-                BOOKMAKER,
-                FLORIST,
-                FUNERAL_DIRECTORS,
-                STATIONERY,
-                TOBACCO,
-                MASSAGE,
-                JEWELRY,
-                BABY_GOODS,
-                WATCHES,
-                ATV,
-                INTERIOR_DECORATION,
-                MEDICAL_SUPPLY,
-                STORAGE_RENTAL,
-                HIFI,
-                CARPET,
-                SPICES,
-                CURTAIN,
-                PARTY,
-                FRAME,
-                APPLIANCE,
-                FLOORING,
-                HEARING_AIDS,
-                CANDLES,
-                CONFECTIONERY,
-                VIDEO,
-                COLLECTOR,
-                COSMETICS,
-                GENERAL,
-                HABERDASHERY,
-                CAR,
-                MOBILE_PHONE,
-                GAS,
-                MUSICAL_INSTRUMENT,
-                CHEMIST,
-                DOITYOURSELF,
-                TOYS,
-                SPORTS,
-                TICKET,
-                FISHING,
-                CLOTHES,
-                OUTDOOR,
-                AGRARIAN,
-                POTTERY,
-                TRADE,
-                COFFEE,
-                KIOSK
+                REGIONAL_PARK,
+                WATER_PROTECTION_AREA,
+                ECONOMIC,
+                VICE_COUNTY
         });
         defineKnownValues(TagKey.ABANDONED_AMENITY, new TagValue[] {
                 PRISON_CAMP,
                 PRISON
         });
-        defineKnownValues(TagKey.LINE, new TagValue[] {
-                BUSBAR,
-                BAY
+        defineKnownValues(TagKey.REVIEW_REQUESTED, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.TRANSFORMER, new TagValue[] {
+                AUTO,
+                PHASE_ANGLE_REGULATOR,
+                AUXILIARY,
+                YES,
+                CONVERTER,
+                GENERATOR,
+                TRACTION,
+                DISTRIBUTION
+        });
+        defineKnownValues(TagKey.NONAME, new TagValue[] {
+                YES
         });
         defineKnownValues(TagKey.MOTORCAR, new TagValue[] {
-                NO
+                NO,
+                YES
         });
-        defineKnownValues(TagKey.FORTIFICATION_TYPE, new TagValue[] {
-                SCONCE,
-                HILL_FORT,
-                LIMES,
-                RINGFORT
-        });
-        defineKnownValues(TagKey.ARTWORK_TYPE, new TagValue[] {
-                STATUE,
-                SCULPTURE
+        defineKnownValues(TagKey.SWITCH, new TagValue[] {
+                DISCONNECTOR,
+                EARTHING,
+                MECHANICAL,
+                CIRCUIT_BREAKER
         });
         defineKnownValues(TagKey.NETWORK, new TagValue[] {
-                IWN,
-                LWN,
-                NWN,
-                RWN,
-                CAMBIO_STADTMOBIL,
-                LHN,
-                CALL_A_BIKE,
-                ICN,
-                LCN,
-                NCN,
-                NEXTBIKE,
-                RHN,
-                FLINKSTER,
-                RCN
+                NCN
+        });
+        defineKnownValues(TagKey.TROLLEY_WIRE, new TagValue[] {
+                YES
+        });
+        defineKnownValues(TagKey.GUIDEPOST, new TagValue[] {
+                HIKING,
+                SIMPLE
         });
         defineKnownValues(TagKey.MOTOR_VEHICLE, new TagValue[] {
+                YES,
                 DESTINATION
+        });
+        defineKnownValues(TagKey.CAR, new TagValue[] {
+                NO,
+                YES
+        });
+        defineKnownValues(TagKey.SIGNAL_STATION, new TagValue[] {
+                STREAM,
+                YES,
+                BRIDGE
+        });
+        defineKnownValues(TagKey.SMOKING, new TagValue[] {
+                OUTSIDE
         });
         defineKnownValues(TagKey.CASTLE_TYPE, new TagValue[] {
                 MANOR,
                 PALACE,
                 CASTRUM,
                 FORTRESS,
+                SHIRO,
                 STATELY,
+                KREMLIN,
                 DEFENSIVE
         });
         defineKnownValues(TagKey.STATION, new TagValue[] {
+                FUNICULAR,
                 SUBWAY,
                 LIGHT_RAIL
         });
@@ -1257,8 +2402,11 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 PRESERVED,
                 TRACK,
                 TRAM,
+                UNSURFACED,
                 NARROW_GAUGE,
+                BYWAY,
                 BRIDLEWAY,
+                YES,
                 RAIL,
                 TERTIARY,
                 MOTORWAY_LINK,
@@ -1275,251 +2423,223 @@ public class TagKeyKnownValueMap extends HashMap<TagKey, Set<TagValue>> {
                 TRUNK_LINK,
                 PRIMARY
         });
-        defineKnownValues(TagKey.ZOO, new TagValue[] {
-                SAFARI_PARK,
-                AVIARY,
-                ENCLOSURE,
-                BUTTERFLY,
-                PETTING_ZOO,
-                REPTILE,
-                BIRDS,
-                WILDLIFE_PARK,
-                FALCONRY
-        });
-        defineKnownValues(TagKey.MEMORIAL, new TagValue[] {
-                PLAQUE,
-                OBELISK,
-                STELE,
-                STATUE,
-                BUST,
-                STOLPERSTEIN,
-                STONE,
-                WAR_MEMORIAL
-        });
-        defineKnownValues(TagKey.HISTORIC, new TagValue[] {
-                ARCHAEOLOGICAL_SITE,
-                BOMB_CRATER,
-                CASTLE,
-                CITYWALLS,
-                CHARCOAL_PILE,
-                SHIP,
-                MONUMENT,
-                BUILDING,
-                MANOR,
-                WRECK,
-                CITY_GATE,
-                PILLORY,
-                LOCOMOTIVE,
-                BOUNDARY_STONE,
-                RUNE_STONE,
-                OPTICAL_TELEGRAPH,
-                MEMORIAL,
-                MINE,
-                WAYSIDE_SHRINE,
-                TOMB,
-                AIRCRAFT,
-                WAYSIDE_CROSS,
-                STONE,
-                MONASTERY,
-                MILESTONE,
-                BATTLEFIELD,
-                RUINS,
-                FORT,
-                GALLOWS
-        });
-        defineKnownValues(TagKey.INTERNET_ACCESS, new TagValue[] {
-                WLAN
+        defineKnownValues(TagKey.DIRECTION, new TagValue[] {
+                CLOCKWISE,
+                UP,
+                DOWN,
+                ANTICLOCKWISE
         });
         defineKnownValues(TagKey.MAN_MADE, new TagValue[] {
-                ANTENNA,
-                DYKE,
-                BREAKWATER,
-                GOODS_CONVEYOR,
-                WATER_WORKS,
-                MONITORING_STATION,
-                INSECT_HOTEL,
-                MDF,
-                EMBANKMENT,
-                FLAGPOLE,
-                CELLAR_ENTRANCE,
-                WATER_WELL,
-                TOWER,
-                SPOIL_HEAP,
                 CRANE,
-                ADIT,
+                CHIMNEY,
+                LIGHTHOUSE,
+                SEPTIC_TANK,
+                MAST,
+                CAIRN,
                 WINDMILL,
-                PETROLEUM_WELL,
-                BUNKER_SILO,
-                GROYNE,
+                CROSS,
+                PIPELINE,
                 BEACON,
-                DOVECOTE,
-                SNOW_CANNON,
-                RESERVOIR_COVERED,
+                BUOY,
+                PILLAR,
+                WATER_TOWER,
+                OBELISK,
+                WATER_TANK,
                 WATER_TAP,
                 BRIDGE,
-                COOLING_TOWER,
-                OFFSHORE_PLATFORM,
-                TELESCOPE,
-                COMMUNICATIONS_TOWER,
-                CHIMNEY,
-                WORKS,
-                LIGHTHOUSE,
-                MAST,
-                POWER_WIND,
-                MINESHAFT,
-                BEEHIVE,
-                NESTING_SITE,
-                OBSERVATORY,
-                STORAGE_TANK,
-                KILN,
-                PIER,
-                PUMPING_STATION,
-                SATELLITE_DISH,
-                WATER_TOWER,
-                WILDLIFE_CROSSING,
-                OBELISK,
-                SURVEILLANCE,
-                SURVEY_POINT,
-                CROSS,
-                WASTEWATER_PLANT,
-                HOT_WATER_TANK,
-                SILO,
-                PIPELINE,
-                CUTLINE,
-                GASOMETER,
-                WATERMILL,
-                MAYPOLE,
-                WATER_TANK
+                FLAGPOLE,
+                GROUND_STATION,
+                TUNNEL,
+                TOWER
         });
-        defineKnownValues(TagKey.BIOSPHÄRENWIRT, new TagValue[] {
+        defineKnownValues(TagKey.ALE_SUPPLY, new TagValue[] {
+                LIMITED
+        });
+        defineKnownValues(TagKey.BICYCLE_ROAD, new TagValue[] {
                 YES
         });
-        defineKnownValues(TagKey.WATERWAY, new TagValue[] {
-                WEIR,
-                DERELICT_CANAL,
-                DITCH,
-                FUEL,
-                RIVERBANK,
-                FISH_PASS,
-                DRAIN,
-                DAM,
-                BOATYARD,
-                LOCK_GATE,
-                MILESTONE,
-                STREAM,
-                WATERFALL,
-                BOAT_LIFT,
-                CANAL,
-                RIVER,
-                DOCK,
-                PRESSURISED
-        });
-        defineKnownValues(TagKey.CUISINE, new TagValue[] {
-                COFFEE_SHOP
-        });
-        defineKnownValues(TagKey.DISUSED, new TagValue[] {
-                YES
+        defineKnownValues(TagKey.CLOTHES, new TagValue[] {
+                MOTORCYCLE,
+                SPORTS
         });
         defineKnownValues(TagKey.INDUSTRIAL, new TagValue[] {
+                DEPOT,
+                SHIPYARD,
+                BRICKYARD,
+                GRINDING_MILL,
+                MOBILE_EQUIPMENT,
+                AUTO_WRECKER,
+                HEATING_STATION,
+                OIL,
+                FURNITURE,
+                BREWERY,
+                ALUMINIUM_SMELTING,
+                MINE,
+                FACTORY,
                 SCRAP_YARD,
-                BAKERY
+                OIL_MILL,
+                BAKERY,
+                SLAUGHTERHOUSE,
+                RICE_MILL,
+                SALT_POND,
+                WAREHOUSE,
+                DISTRIBUTOR,
+                STEELMAKING,
+                PORT,
+                SAWMILL,
+                ICE_FACTORY,
+                WELL_CLUSTER,
+                MACHINE_SHOP
         });
         defineKnownValues(TagKey.ATTRACTION, new TagValue[] {
                 SUMMER_TOBOGGAN,
                 ANIMAL,
+                MAZE,
                 WATER_SLIDE,
+                ROLLER_COASTER,
                 TRAIN
         });
         defineKnownValues(TagKey.AIRMARK, new TagValue[] {
                 BEACON
         });
-        defineKnownValues(TagKey.SERVICE, new TagValue[] {
-                SIDING,
-                CROSSOVER,
-                DRIVEWAY,
-                YARD,
-                EMERGENCY_ACCESS,
-                AIRCRAFT_CONTROL,
-                PARKING_AISLE,
-                ALLEY,
-                SPUR
+        defineKnownValues(TagKey._4WD_ONLY, new TagValue[] {
+                YES
         });
-        defineKnownValues(TagKey.MEGALITH_TYPE, new TagValue[] {
-                LONG_BARROW,
-                PASSAGE_GRAVE,
-                CHAMBER,
-                DOLMEN,
-                NURAGHE,
-                MENHIR,
-                CIST,
-                THOLOS,
-                STONE_CIRCLE,
-                ALIGNMENT,
-                STONE_SHIP
+        defineKnownValues(TagKey.WALL, new TagValue[] {
+                NOISE_BARRIER,
+                NO,
+                TRAINING_WALL,
+                DRY_STONE,
+                SEAWALL
         });
         defineKnownValues(TagKey.SPORT, new TagValue[] {
-                MOTOR,
                 EQUESTRIAN,
-                SKATEBOARD,
                 BOBSLEIGH,
+                CANOE,
                 SHOOTING,
-                SCUBA_DIVING,
+                CANOE_POLO,
+                CYCLING,
+                BILLARDS,
                 TABLE_SOCCER,
-                BMX,
+                WATER_POLO,
+                GAELIC_GAMES,
                 MULTI,
-                FREE_FLYING,
-                ICE_SKATING,
-                RUNNING,
-                SWIMMING,
-                BASKETBALL,
-                GOLF,
-                TRAMPOLINE,
-                _10PIN,
-                CLIMBING,
-                SOCCER,
-                CHESS,
-                _9PIN,
+                COCKFIGHTING,
+                OBSTACLE_COURSE,
+                DISC_GOLF,
+                DIVING,
+                KARATE,
+                ROWING,
+                SAFETY_TRAINING,
+                BEACHVOLLEYBALL,
+                FIELD_HOCKEY,
+                CURLING,
+                HIGH_ROPE_COURSE,
                 JUDO,
-                MOTOCROSS,
-                BADMINTON,
-                CLIMBING_ADVENTURE,
-                HORSE_RACING,
-                RC_CAR,
-                TENNIS,
-                TABLE_TENNIS,
-                AMERICAN_FOOTBALL,
-                HANDBALL,
-                TOBOGGAN,
-                KARTING,
-                BOXING,
+                BILLIARDS,
+                PADEL,
+                TAEKWONDO,
+                WEIGHTLIFTING,
+                ASSOCIATION_FOOTBALL,
+                AUSTRALIAN_FOOTBALL,
+                HORSESHOES,
+                SHOOTING_RANGE,
                 BASEBALL,
                 VOLLEYBALL,
-                ATHLETICS,
-                SAILING,
                 ARCHERY,
+                MOTOR,
+                GAELIC_FOOTBALL,
+                PELOTA,
+                _8PIN,
+                BOWLS,
+                ICE_HOCKEY,
+                YOGA,
+                SCUBA_DIVING,
+                LASER_TAG,
+                CROQUET,
+                SWIMMING,
+                GOLF,
+                RACQUET,
+                RUGBY_LEAGUE,
+                HOCKEY,
+                SKIING,
+                BADMINTON,
+                BALLE_PELOTE,
+                GYMNASTICS,
+                CLIMBING_ADVENTURE,
+                PARACHUTING,
+                TENNIS,
+                CRICKET_NETS,
+                TABLE_TENNIS,
+                TEAM_HANDBALL,
+                BANDY,
+                CRICKET,
+                TOBOGGAN,
+                ORIENTEERING,
+                DARTS,
+                LACROSSE,
+                SURFING,
+                BMX,
+                FUTSAL,
+                LONG_JUMP,
+                FREE_FLYING,
+                ICE_SKATING,
+                BASKETBALL,
+                TRAMPOLINE,
+                CLIMBING,
+                BATTING_CAGE,
+                MODEL_AERODROME,
+                CHESS,
+                RUGBY,
+                _9PIN,
+                WATER_SKI,
+                PAINTBALL,
+                CLIFF_DIVING,
+                ROLLER_SKATING,
+                SUMO,
+                BOXING,
+                SAILING,
+                ICE_STOCK,
+                DOG_RACING,
+                SKATEBOARD,
+                KITESURFING,
+                NETBALL,
+                FIVES,
+                RUNNING,
+                KORFBALL,
+                PADDLE_TENNIS,
+                PARAGLIDING,
+                _10PIN,
+                CANADIAN_FOOTBALL,
+                RUGBY_UNION,
+                BOULES,
+                SOCCER,
+                FOOTBALLGOLF,
+                SKATING,
+                MOTOCROSS,
+                HAPKIDO,
+                FOOTBALL,
+                HORSE_RACING,
+                AIKIDO,
+                RC_CAR,
+                AMERICAN_FOOTBALL,
+                HANDBALL,
+                KARTING,
+                ATHLETICS,
+                WRESTLING,
+                BASE,
                 FENCING
         });
-        defineKnownValues(TagKey.TUNNEL, new TagValue[] {
-                CULVERT,
-                BUILDING_PASSAGE,
-                YES
+        defineKnownValues(TagKey.MAINTENANCE, new TagValue[] {
+                GRITTING
         });
         defineKnownValues(TagKey.AEROWAY, new TagValue[] {
                 HANGAR,
-                APRON,
-                RUNWAY,
+                LAUNCHPAD,
+                FUEL,
                 WINDSOCK,
-                TERMINAL,
-                HELIPORT,
-                TAXILANE,
-                HOLDING_POSITION,
-                PARKING_POSITION,
-                AERODROME,
-                TAXIWAY,
-                SPACEPORT,
-                NAVIGATIONAID,
                 GATE,
-                HELIPAD
+                TERMINAL
         });
 
     }
