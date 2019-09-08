@@ -3,19 +3,17 @@ package de.gaiasoft.osm.taglib;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class TagTest {
@@ -43,9 +41,7 @@ class TagTest {
                 arguments("WHEELCHAIR", "YES"),
                 arguments("WHEELCHAIR", "NO"),
                 arguments("WHEELCHAIR", "LIMITED"),
-                arguments("WHEELCHAIR", "DESIGNATED"),
                 arguments("BUILDING", "YES"),
-                arguments("BUILDING", "NO"),
                 arguments("ORGANIC", "YES"),
                 arguments("ORGANIC", "NO"),
                 arguments("ORGANIC", "ONLY")
