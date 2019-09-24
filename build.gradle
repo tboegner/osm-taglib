@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 group 'de.gaiasoft.osm'
-version = 0.3
+version = 0.42
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -19,6 +19,10 @@ dependencies {
 jar {
     baseName = "osm"
     appendix = "taglib"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 uploadArchives {

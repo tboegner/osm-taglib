@@ -1,15 +1,11 @@
 package de.gaiasoft.osm.taglib;
 
-import org.apache.commons.lang3.time.StopWatch;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.RepetitionInfo;
+import de.gaiasoft.osm.taglib.support.KeyInfo;
+import de.gaiasoft.osm.taglib.support.TagHandler;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -17,64 +13,77 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class TagTest {
+    private static Stream<Arguments> keyProvider() {
+        return Stream.of(
+                arguments("name"),
+                arguments("description"),
+                arguments("note"),
+                arguments("source"),
+                arguments("addr:country"),
+                arguments("addr:city"),
+                arguments("addr:suburb"),
+                arguments("addr:place"),
+                arguments("addr:street"),
+                arguments("addr:housenumber"),
+                arguments("addr:postcode"),
+                arguments("contact:phone"),
+                arguments("contact:fax"),
+                arguments("contact:email"),
+                arguments("contact:website"),
+                arguments("produce"),
+                arguments("operator"),
+                arguments("opening_hours")
+        );
+    }
+
     private static Stream<Arguments> tagMappingProvider() {
         return Stream.of(
-                arguments("SHOP", "BAKERY"),
-                arguments("SHOP", "BUTCHER"),
-                arguments("SHOP", "FARM"),
-                arguments("SHOP", "GREENGROCER"),
-                arguments("SHOP", "SUPERMARKET"),
-                arguments("SHOP", "CONVENIENCE"),
-                arguments("SHOP", "BEVERAGES"),
-                arguments("AMENITY", "VENDING_MACHINE"),
-                arguments("AMENITY", "MARKETPLACE"),
-                arguments("AMENITY", "BAR"),
-                arguments("AMENITY", "CAFE"),
-                arguments("AMENITY", "BIERGARTEN"),
-                arguments("AMENITY", "FAST_FOOD"),
-                arguments("AMENITY", "FOOD_COURT"),
-                arguments("AMENITY", "ICE_CREAM"),
-                arguments("AMENITY", "PUB"),
-                arguments("AMENITY", "RESTAURANT"),
-                arguments("VENDING", "FOOD"),
-                arguments("VENDING", "CIGARETTES"),
-                arguments("WHEELCHAIR", "YES"),
-                arguments("WHEELCHAIR", "NO"),
-                arguments("WHEELCHAIR", "LIMITED"),
-                arguments("BUILDING", "YES"),
-                arguments("ORGANIC", "YES"),
-                arguments("ORGANIC", "NO"),
-                arguments("ORGANIC", "ONLY")
+                arguments("shop", "bakery"),
+                arguments("shop", "butcher"),
+                arguments("shop", "farm"),
+                arguments("shop", "greengrocer"),
+                arguments("shop", "supermarket"),
+                arguments("shop", "convenience"),
+                arguments("shop", "beverages"),
+                arguments("amenity", "vending_machine"),
+                arguments("amenity", "marketplace"),
+                arguments("amenity", "bar"),
+                arguments("amenity", "cafe"),
+                arguments("amenity", "biergarten"),
+                arguments("amenity", "fast_food"),
+                arguments("amenity", "food_court"),
+                arguments("amenity", "ice_cream"),
+                arguments("amenity", "pub"),
+                arguments("amenity", "restaurant"),
+                arguments("vending", "food"),
+                arguments("vending", "cigarettes"),
+                arguments("wheelchair", "yes"),
+                arguments("wheelchair", "no"),
+                arguments("wheelchair", "limited"),
+                arguments("building", "yes"),
+                arguments("organic", "yes"),
+                arguments("organic", "no"),
+                arguments("organic", "only")
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("keyProvider")
+    void testKeyExists(String key) {
+        TagHandler tagHandler = TagHandler.getInstance();
+        KeyInfo keyInfo = tagHandler.findKey(key);
+        assertNotNull(keyInfo);
     }
 
     @ParameterizedTest
     @MethodSource("tagMappingProvider")
     void testMappingExists(String key, String value) {
-        TagKey tagKey = TagKey.valueOf(key);
-        TagValue tagValue = TagValue.valueOf(value);
+        TagHandler tagHandler = TagHandler.getInstance();
+        KeyInfo keyInfo = tagHandler.findKey(key);
+        assertNotNull(keyInfo);
 
-        Set<TagValue> tagValueSet = TagKeyKnownValueMap.instance().get(tagKey);
-        assertNotNull(tagValueSet);
-
-        assertTrue(tagValueSet.contains(tagValue));
+        boolean valueValidForKey = tagHandler.isValueValidForKey(key, value);
+        assertTrue(valueValidForKey);
     }
 
-    @RepeatedTest(5)
-    void testFindKeyPerformance(RepetitionInfo repInfo) {
-        HashSet<String> keySet = new HashSet<>();
-        keySet.add("aeroway");
-        keySet.add("ramp");
-        keySet.add("source");
-        keySet.add("water_well");
-
-        for (String key: keySet) {
-            StopWatch stopWatch = StopWatch.createStarted();
-            TagKey water_well = TagKey.findKey(key);
-            stopWatch.stop();
-            long micros = stopWatch.getTime(TimeUnit.MICROSECONDS);
-            System.out.println(String.format("findKey[%d] '%s' took %d micros",
-                    repInfo.getCurrentRepetition(), key, micros));
-        }
-    }
 }
