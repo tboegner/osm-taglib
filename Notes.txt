@@ -1,2 +1,0 @@
-Die Tests wollten über IntelliJ einfach nicht mehr starten.
-Vorl. Behebung: Gradle-Einstellungen, bei "Run-Tests-Using" IntelliJ eingestellt.
