@@ -1,7 +1,7 @@
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 group 'de.gaiasoft.osm'
-version = 0.42
+version = 0.43
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -10,25 +10,36 @@ repositories {
 }
 
 dependencies {
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.5.1")
-    testCompile("org.junit.jupiter:junit-jupiter-params:5.5.1")
-    testCompile("org.apache.commons:commons-lang3:3.8.1")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
+    testImplementation("org.apache.commons:commons-lang3:3.9")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
 }
 
 jar {
-    baseName = "osm"
-    appendix = "taglib"
+    archiveBaseName = "osm"
+    archiveAppendix = "taglib"
 }
 
 test {
     useJUnitPlatform()
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: 'https://gaiasoft.de/archiva/repository/private/') {
-            authentication(userName: 'gradle', password: 'ahSoexe7')
+publishing {
+    publications {
+        osmTaglib(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'Private'
+            url = 'https://gaiasoft.de/archiva/repository/private/'
+            credentials {
+                username = 'gradle'
+                password = 'ahSoexe7'
+            }
         }
     }
 }
