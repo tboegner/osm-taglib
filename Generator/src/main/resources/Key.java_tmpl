@@ -1,0 +1,19 @@
+package de.gaiasoft.osm.taglib.def;
+
+import de.gaiasoft.osm.taglib.base.KeyBase;
+
+public enum Key#0# implements KeyBase {
+#1#    ;
+
+    private String key;
+
+    Key#0#(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public String getKey() {
+        return key;
+    }
+
+}

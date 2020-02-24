@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':RestClient')
+    compile ('org.apache.commons:commons-lang3:3.9')
+    compile ('org.apache.commons:commons-csv:1.6')
+}

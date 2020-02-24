@@ -1,44 +1,46 @@
-apply plugin: 'java'
-apply plugin: 'maven-publish'
-group 'de.gaiasoft.osm'
-version = 0.43
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
-    testImplementation("org.apache.commons:commons-lang3:3.9")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-}
-
-jar {
-    archiveBaseName = "osm"
-    archiveAppendix = "taglib"
-}
-
-test {
-    useJUnitPlatform()
-}
-
-publishing {
-    publications {
-        osmTaglib(MavenPublication) {
-            from components.java
-        }
-    }
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    group 'de.gaiasoft.osm'
+    version = 0.43
+    sourceCompatibility = 1.11
+    targetCompatibility = 1.11
 
     repositories {
-        maven {
-            name = 'Private'
-            url = 'https://gaiasoft.de/archiva/repository/private/'
-            credentials {
-                username = 'gradle'
-                password = 'ahSoexe7'
+        mavenCentral()
+    }
+
+    dependencies {
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+        testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
+        testImplementation("org.apache.commons:commons-lang3:3.9")
+    }
+
+    jar {
+        archiveBaseName = rootProject.name
+        archiveAppendix = project.name
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    publishing {
+        publications {
+            osmTaglib(MavenPublication) {
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+                name = 'Private'
+                url = 'https://gaiasoft.de/archiva/repository/private/'
+                credentials {
+                    username = 'gradle'
+                    password = 'ahSoexe7'
+                }
             }
         }
     }

@@ -1,0 +1,101 @@
+package de.gaiasoft.osm.taglib.gen.generation;
+
+import de.gaiasoft.osm.taglib.gen.processing.InterpretationResult;
+import de.gaiasoft.osm.taglib.gen.processing.KeySegment;
+import org.apache.commons.lang3.CharUtils;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
+
+public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
+    private String resourcesDir;
+    private FileIoHelper fileIoHelper = new FileIoHelper();
+    private static final String TARGET_DIR = "gen/";
+
+    public JavaTagLibGenerator(String resourcesDir) {
+        this.resourcesDir = resourcesDir;
+    }
+
+    public void generateSourceCode(InterpretationResult interpretationResult) {
+        generateKeyDefinitions(interpretationResult);
+        generateValueDefinitions(interpretationResult);
+    }
+
+    private void generateKeyDefinitions(InterpretationResult interpretationResult) {
+        StringBuilder sb = new StringBuilder(1024);
+        for (KeySegment segment : KeySegment.values()) {
+            buildKeyEnumDefinition(interpretationResult.getKeySetOfSegment(segment), sb);
+        }
+        generateDefinitionFromTemplate("", "Key", sb.toString());
+    }
+
+    private void buildKeyEnumDefinition(Set<KeyDefinition> keySet, StringBuilder sb) {
+        for(KeyDefinition keyDefinition : keySet) {
+            generateKeyDefinition(sb, keyDefinition);
+        }
+    }
+
+    private void generateValueDefinitions(InterpretationResult interpretationResult) {
+        for (KeySegment segment : KeySegment.values()) {
+            Map<String, Set<String>> keyValueMap = interpretationResult.getKeyValueMappingsOfSegement(segment);
+            for (String key : keyValueMap.keySet()) {
+                String valueDef = buildValueEnumDefinition(keyValueMap, key);
+                generateDefinitionFromTemplate("_"+key.toUpperCase(), "Value", valueDef);
+            }
+        }
+    }
+
+    private String buildValueEnumDefinition(Map<String, Set<String>> keyValueMap, String key) {
+        StringBuilder sb = new StringBuilder(1024);
+        for(String value : keyValueMap.get(key)) {
+            appendValueDefinition(sb, value);
+        }
+        return sb.toString();
+    }
+
+    private void generateDefinitionFromTemplate(String type, String targetFile, String dynamicContent) {
+        try {
+            String code = readCodeTemplate(targetFile);
+            code = code.replaceAll("#0#", type);
+            code = code.replaceFirst("#1#", dynamicContent);
+            fileIoHelper.writeStringIntoFile(TARGET_DIR+targetFile+type+".java", code);
+        } catch (IOException ioEx) {
+            ioEx.printStackTrace();
+        }
+    }
+
+    private String readCodeTemplate(String targetFile) throws IOException {
+        return fileIoHelper.readFileIntoString(resourcesDir + targetFile + ".java_tmpl");
+    }
+
+    private void generateKeyDefinition(StringBuilder sb, KeyDefinition keyDefinition) {
+        String key = keyDefinition.getId();
+        appendSpaces(sb,4);
+        sb.append(toConstantDefinition(key));
+        sb.append("(\"").append(key).append("\"");
+        sb.append("),\n");
+    }
+
+    private String toConstantDefinition(String name) {
+        String constDef = name.replaceAll("[:;-]", "_").toUpperCase();
+        if(CharUtils.isAsciiNumeric(constDef.charAt(0))) {
+            return "_" + constDef;
+        }
+        return constDef;
+    }
+
+    private void appendValueDefinition(StringBuilder sb, String value) {
+        appendSpaces(sb,4);
+        sb.append(toConstantDefinition(value));
+        sb.append("(\"").append(value).append("\"),\n");
+    }
+
+    private StringBuilder appendSpaces(StringBuilder sb, int count) {
+        for(int i=0; i<count; ++i) {
+            sb.append(' ');
+        }
+        return sb;
+    }
+
+}

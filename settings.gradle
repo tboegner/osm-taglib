@@ -1,0 +1,5 @@
+rootProject.name = 'OsmTagLib'
+
+include 'RestClient'
+include 'Generator'
+include 'Library'
