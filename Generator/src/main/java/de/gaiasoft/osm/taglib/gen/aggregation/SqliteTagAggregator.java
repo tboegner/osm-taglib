@@ -1,5 +1,6 @@
 package de.gaiasoft.osm.taglib.gen.aggregation;
 
+import de.gaiasoft.osm.taglib.gen.util.ConfigManager;
 import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValuesData;
 import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeysAllData;
 
@@ -7,7 +8,7 @@ import java.sql.*;
 import java.util.*;
 
 public class SqliteTagAggregator implements TagAggregatorStrategy {
-    private static final String dbFileName = "src/main/resources/taginfo-wiki.db";
+    private static final String dbFileName = ConfigManager.getInstance().getInputDir()+"taginfo-wiki.db";
     private Set<String> inputKeySet;
 
     public SqliteTagAggregator(Set<String> inputKeySet) {

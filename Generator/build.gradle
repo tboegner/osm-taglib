@@ -1,5 +1,15 @@
 dependencies {
-    compile project(':RestClient')
-    compile ('org.apache.commons:commons-lang3:3.9')
-    compile ('org.apache.commons:commons-csv:1.6')
+    implementation project(':RestClient')
+    implementation('org.apache.commons:commons-lang3:3.9')
+    implementation('org.apache.commons:commons-csv:1.6')
+    runtimeOnly('org.xerial:sqlite-jdbc:3.25.2')
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": "de.gaiasoft.osm.taglib.gen.TagLibGenerator",
+                "Implementation-Version": archiveVersion,
+                "Implementation-Title": "OsmTagLib Generator"
+        )
+    }
 }

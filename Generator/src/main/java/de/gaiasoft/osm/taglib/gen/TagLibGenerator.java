@@ -9,22 +9,38 @@ import de.gaiasoft.osm.taglib.gen.generation.TagLibGeneratorStrategy;
 import de.gaiasoft.osm.taglib.gen.processing.InterpretationResult;
 import de.gaiasoft.osm.taglib.gen.processing.KeySegment;
 import de.gaiasoft.osm.taglib.gen.processing.TagInterpreter;
+import de.gaiasoft.osm.taglib.gen.util.ConfigManager;
 
+/**
+ * Executable for generation of OsmTagLib.
+ * Optional argument: Path to properties-file.
+ */
 public class TagLibGenerator {
 
     public static void main (String[] args) {
-        TagLibGenerator tagLibGenerator = new TagLibGenerator();
-        tagLibGenerator.generateTagLib();
-    }
+        try {
+            if(args.length > 0) {
+                ConfigManager.setPropertiesFile(args[0]);
+            }
+            ConfigManager config = ConfigManager.getInstance();
+            if(config.hasConfigError()) {
+                throw(config.getConfigException());
+            }
 
-    private static final String resourcesDir = "src/main/resources/";
+            TagLibGenerator tagLibGenerator = new TagLibGenerator(config);
+            tagLibGenerator.generateTagLib();
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+
+    }
 
     private TagInterpreter interpreter;
     private TagLibGeneratorStrategy generator;
 
-    public TagLibGenerator() {
+    public TagLibGenerator(ConfigManager config) {
         interpreter = new TagInterpreter();
-        generator = new JavaTagLibGenerator(resourcesDir);
+        generator = new JavaTagLibGenerator(config.getInputDir(), config.getOutputDir());
     }
 
     private void generateTagLib() {
@@ -63,7 +79,7 @@ public class TagLibGenerator {
     }
 
     private AggregationResult readKeySetFromFile(String fileName) {
-        return new FileKeySetNoValuesAggregator(resourcesDir + fileName).aggregateTagData();
+        return new FileKeySetNoValuesAggregator(ConfigManager.getInstance().getInputDir() + fileName).aggregateTagData();
     }
 
 }

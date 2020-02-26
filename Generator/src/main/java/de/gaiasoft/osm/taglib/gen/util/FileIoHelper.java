@@ -1,11 +1,22 @@
-package de.gaiasoft.osm.taglib.gen.generation;
+package de.gaiasoft.osm.taglib.gen.util;
 
 import java.io.*;
+import java.util.Properties;
 
 /**
  * Helper class for doing file IO operations.
  */
 public class FileIoHelper {
+    private static FileIoHelper instance = null;
+    private FileIoHelper() {}
+
+    public static FileIoHelper getInstance() {
+        if(instance == null) {
+            instance = new FileIoHelper();
+        }
+        return instance;
+    }
+
     public String readFileIntoString(String fileName) throws IOException {
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
@@ -28,4 +39,11 @@ public class FileIoHelper {
         fw.close();
     }
 
+    public Properties readProperties(String propertiesFile) throws IOException {
+        Properties properties = new Properties();
+        try(final FileInputStream fis = new FileInputStream(propertiesFile)) {
+            properties.load(fis);
+        }
+        return properties;
+    }
 }

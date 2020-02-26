@@ -2,6 +2,7 @@ package de.gaiasoft.osm.taglib.gen.generation;
 
 import de.gaiasoft.osm.taglib.gen.processing.InterpretationResult;
 import de.gaiasoft.osm.taglib.gen.processing.KeySegment;
+import de.gaiasoft.osm.taglib.gen.util.FileIoHelper;
 import org.apache.commons.lang3.CharUtils;
 
 import java.io.IOException;
@@ -10,11 +11,11 @@ import java.util.Set;
 
 public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
     private String resourcesDir;
-    private FileIoHelper fileIoHelper = new FileIoHelper();
-    private static final String TARGET_DIR = "gen/";
+    private String outputDir;
 
-    public JavaTagLibGenerator(String resourcesDir) {
+    public JavaTagLibGenerator(String resourcesDir, String outputDir) {
         this.resourcesDir = resourcesDir;
+        this.outputDir = outputDir;
     }
 
     public void generateSourceCode(InterpretationResult interpretationResult) {
@@ -59,14 +60,14 @@ public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
             String code = readCodeTemplate(targetFile);
             code = code.replaceAll("#0#", type);
             code = code.replaceFirst("#1#", dynamicContent);
-            fileIoHelper.writeStringIntoFile(TARGET_DIR+targetFile+type+".java", code);
+            FileIoHelper.getInstance().writeStringIntoFile(outputDir +targetFile+type+".java", code);
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
         }
     }
 
     private String readCodeTemplate(String targetFile) throws IOException {
-        return fileIoHelper.readFileIntoString(resourcesDir + targetFile + ".java_tmpl");
+        return FileIoHelper.getInstance().readFileIntoString(resourcesDir + targetFile + ".java_tmpl");
     }
 
     private void generateKeyDefinition(StringBuilder sb, KeyDefinition keyDefinition) {
