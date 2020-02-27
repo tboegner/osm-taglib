@@ -44,4 +44,8 @@ public class ConfigManager {
     public String getOutputDir() {
         return configProperties.getProperty("outputDir")+"/";
     }
+
+    public String getLogDir() {
+        return configProperties.getProperty("logDir")+"/";
+    }
 }

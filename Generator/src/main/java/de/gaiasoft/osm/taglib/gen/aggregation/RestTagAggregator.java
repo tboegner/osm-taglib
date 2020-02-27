@@ -1,11 +1,10 @@
 package de.gaiasoft.osm.taglib.gen.aggregation;
 
+import de.gaiasoft.osm.taglib.gen.util.CSVBuilder;
 import de.gaiasoft.osm.taglib.rest.taginfo.TagInfoRestClient;
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.*;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
+import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValues;
+import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValuesData;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -90,19 +89,10 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
     }
 
     private void writeKeySetFile(Set<KeyAdapter> keySet) {
-        try(CSVPrinter csvPrinter = buildCSVPrinter("KeySet")) {
-            csvPrinter.printRecord("Key",
-                    "count_all", "count_all_fraction",
-                    "count_nodes", "count_nodes_fraction",
-                    "count_ways", "count_ways_fraction",
-                    "count_relations", "count_relations_fraction");
+        try(CSVBuilder csvBuilder = new CSVBuilder("KeySet", getClass().getSimpleName())) {
+            csvBuilder.buildKeySetHeader();
             for(KeyAdapter key : keySet) {
-                KeysAllData item = key.getKeysAllData();
-                csvPrinter.printRecord(item.getKey(),
-                        item.getCount_all(), item.getCount_all_fraction(),
-                        item.getCount_nodes(), item.getCount_nodes_fraction(),
-                        item.getCount_ways(), item.getCount_ways_fraction(),
-                        item.getCount_relations(), item.getCount_relations_fraction());
+                csvBuilder.buildKeyRecord(key);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,26 +100,15 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
     }
 
     private void writeKeyValueMappinsFile(Map<String, List<ValueAdapter>> keyValueMappings) {
-        try(CSVPrinter csvPrinter = buildCSVPrinter("KeyValueMap")) {
-            csvPrinter.printRecord("key", "value",
-                    "count", "fraction",
-                    "in_wiki", "description");
+        try(CSVBuilder csvBuilder = new CSVBuilder("KeyValueMap", getClass().getSimpleName())) {
+            csvBuilder.buildKeyValueMapHeader();
             for(Map.Entry<String, List<ValueAdapter>> mapping : keyValueMappings.entrySet()) {
                 for(ValueAdapter valueAdapter: mapping.getValue()) {
-                    KeyValuesData valueData = valueAdapter.getKeyValuesData();
-                    csvPrinter.printRecord(mapping.getKey(), valueData.getValue(),
-                            valueData.getCount(), valueData.getFraction(),
-                            valueData.getIn_wiki(), valueData.getDescription());
+                    csvBuilder.buildValueRecord(mapping.getKey(), valueAdapter);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private CSVPrinter buildCSVPrinter(String baseFilename) throws IOException {
-        FileWriter writer = new FileWriter(baseFilename+"_"+getClass().getSimpleName()+".csv");
-        CSVFormat format = CSVFormat.DEFAULT.withDelimiter(';').withRecordSeparator('\n');
-        return new CSVPrinter(writer, format);
     }
 }

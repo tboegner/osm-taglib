@@ -36,7 +36,7 @@ languages. Currently only an implementation for java exists.
 * CSV-Ausgabe verbessern/ logs ablegen? Konfig?
 * Stats in der Konsole lesbarer/verständlicher machen
 * Check:
-  KeySetCombinationsTagAggregator (getKeyStats?)
+  KeySetCombinationsTagAggregator (getKeyStats? also for KeySetTagAggregator)
   AllKeysTagAggregator
   ProjectKeysTagAggregator
   
