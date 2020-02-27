@@ -19,11 +19,6 @@ public class KeySetTagAggregator extends RestTagAggregator {
         this.inputKeySet = inputKeySet;
     }
 
-    @Override
-    public String getPostfixIdentifier() {
-        return "KeySet";
-    }
-
     /**
      * Fetches stats of each key in the basic set.
      * @return Basic key set that was input enriched by usage stats.

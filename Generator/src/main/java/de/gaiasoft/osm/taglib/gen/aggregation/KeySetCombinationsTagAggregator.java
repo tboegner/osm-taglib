@@ -18,11 +18,6 @@ public class KeySetCombinationsTagAggregator extends KeySetTagAggregator {
         super(inputKeySet);
     }
 
-    @Override
-    public String getPostfixIdentifier() {
-        return "KeySetCombinations";
-    }
-
 
     /**
      * Finds further keys, that occur in combination with the basic keys. For

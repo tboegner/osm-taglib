@@ -19,11 +19,6 @@ public class ProjectKeysTagAggregator extends RestTagAggregator {
     private static final long MIN_KEY_COUNT = 10000000;
 
     @Override
-    public String getPostfixIdentifier() {
-        return "ProjectKeys";
-    }
-
-    @Override
     public Set<KeysAllData> determineBasicKeySet() {
         Set<KeysAllData> basicKeySet = new HashSet<>();
         ProjectsKeys projectsKeys;

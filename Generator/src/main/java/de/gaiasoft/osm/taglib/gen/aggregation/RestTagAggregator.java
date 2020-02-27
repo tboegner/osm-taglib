@@ -11,7 +11,8 @@ import java.util.*;
 
 /**
  * A base class for strategies, which aggregate tag data via
- * the Taginfo REST interface. Determined key set and value mappings are written into csv-files.
+ * the Taginfo REST interface. The logic for determining values belonging to a key is implemented here.
+ * Determined key set and value mappings are written into csv-files.
  */
 public abstract class RestTagAggregator implements TagAggregatorStrategy {
     private double qualifierValueUsage = 0.05;
@@ -35,7 +36,6 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
 
     abstract Set<KeysAllData> determineBasicKeySet();
     abstract Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet);
-    abstract String getPostfixIdentifier();
 
 
     private boolean isValueAccepted(KeyValuesData valueData) {
@@ -134,7 +134,6 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
                         item.getCount_ways(), item.getCount_ways_fraction(),
                         item.getCount_relations(), item.getCount_relations_fraction());
             }
-            csvPrinter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,14 +151,13 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
                             valueData.getIn_wiki(), valueData.getDescription());
                 }
             }
-            csvPrinter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private CSVPrinter buildCSVPrinter(String baseFilename) throws IOException {
-        FileWriter writer = new FileWriter(baseFilename+getPostfixIdentifier()+".csv");
+        FileWriter writer = new FileWriter(baseFilename+"_"+getClass().getSimpleName()+".csv");
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(';').withRecordSeparator('\n');
         return new CSVPrinter(writer, format);
     }

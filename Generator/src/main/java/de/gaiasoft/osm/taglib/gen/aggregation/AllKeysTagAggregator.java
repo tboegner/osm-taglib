@@ -15,11 +15,6 @@ public class AllKeysTagAggregator extends RestTagAggregator {
     private double qualifierKeyUsage = 0.0001;
 
     @Override
-    public String getPostfixIdentifier() {
-        return "AllKeys";
-    }
-
-    @Override
     public Set<KeysAllData> determineBasicKeySet() {
         Set<KeysAllData> basicKeySet = new HashSet<>();
         KeysAll keysAll;
