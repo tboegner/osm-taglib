@@ -15,8 +15,8 @@ public class AllKeysTagAggregator extends RestTagAggregator {
     private double qualifierKeyUsage = 0.0001;
 
     @Override
-    public Set<KeysAllData> determineBasicKeySet() {
-        Set<KeysAllData> basicKeySet = new HashSet<>();
+    public Set<KeyAdapter> determineBasicKeySet() {
+        Set<KeyAdapter> basicKeySet = new HashSet<>();
         KeysAll keysAll;
         int page=0;
         boolean fetchNextPage = true;
@@ -24,7 +24,7 @@ public class AllKeysTagAggregator extends RestTagAggregator {
             keysAll = tagInfo.getKeysAll(++page, pageSizeAllKeys, TagInfoRestClient.FILTER_IN_WIKI, TagInfoRestClient.SORT_COUNT_ALL, false);
             for (KeysAllData item : keysAll.getData()) {
                 if(item.getCount_all_fraction() > qualifierKeyUsage) {
-                    basicKeySet.add(item);
+                    basicKeySet.add(new KeyAdapter(item));
                 } else {
                     fetchNextPage = false;
                     break;
@@ -35,7 +35,7 @@ public class AllKeysTagAggregator extends RestTagAggregator {
     }
 
     @Override
-    public Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet) {
+    public Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet) {
         return new HashSet<>();
     }
 }

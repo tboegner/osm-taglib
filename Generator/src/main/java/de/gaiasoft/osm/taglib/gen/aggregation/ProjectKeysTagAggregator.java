@@ -19,8 +19,8 @@ public class ProjectKeysTagAggregator extends RestTagAggregator {
     private static final long MIN_KEY_COUNT = 10000000;
 
     @Override
-    public Set<KeysAllData> determineBasicKeySet() {
-        Set<KeysAllData> basicKeySet = new HashSet<>();
+    public Set<KeyAdapter> determineBasicKeySet() {
+        Set<KeyAdapter> basicKeySet = new HashSet<>();
         ProjectsKeys projectsKeys;
         int page=0;
         int relevantKeysOnPage;
@@ -32,9 +32,7 @@ public class ProjectKeysTagAggregator extends RestTagAggregator {
                         (item.getProjects() >= MIN_PROJECTS || item.getCount_all() >= MIN_KEY_COUNT);
                 if(relevantKey) {
                     ++relevantKeysOnPage;
-                    // TODO (optional): design decoupled data type at the interface
-                    // the types from rest interface are not really matching our needs
-                    basicKeySet.add(upcast(item));
+                    basicKeySet.add(new KeyAdapter(item));
                 }
 
             }
@@ -44,17 +42,8 @@ public class ProjectKeysTagAggregator extends RestTagAggregator {
     }
 
     @Override
-    public Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet) {
+    public Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet) {
         return new HashSet<>();
     }
 
-    private KeysAllData upcast(ProjectsKeysData projectsKeysData) {
-        KeysAllData keysAllData = new KeysAllData();
-        keysAllData.setKey(projectsKeysData.getKey());
-        keysAllData.setIn_wiki(projectsKeysData.getIn_wiki());
-        keysAllData.setCount_all(projectsKeysData.getCount_all());
-        keysAllData.setCount_all_fraction(projectsKeysData.getCount_all_fraction());
-        keysAllData.setProjects(projectsKeysData.getProjects());
-        return keysAllData;
-    }
 }

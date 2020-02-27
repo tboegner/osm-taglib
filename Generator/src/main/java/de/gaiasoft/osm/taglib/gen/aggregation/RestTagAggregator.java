@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  * A base class for strategies, which aggregate tag data via
- * the Taginfo REST interface. The logic for determining values belonging to a key is implemented here.
+ * the Taginfo REST interface. The logic for determining the values belonging to a key is implemented here.
  * Determined key set and value mappings are written into csv-files.
  */
 public abstract class RestTagAggregator implements TagAggregatorStrategy {
@@ -34,8 +34,8 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         return this;
     }
 
-    abstract Set<KeysAllData> determineBasicKeySet();
-    abstract Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet);
+    abstract Set<KeyAdapter> determineBasicKeySet();
+    abstract Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet);
 
 
     private boolean isValueAccepted(KeyValuesData valueData) {
@@ -54,24 +54,24 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         return result;
     }
 
-    private Set<KeysAllData> determineKeySet() {
-        Set<KeysAllData> keySet = determineBasicKeySet();
+    private Set<KeyAdapter> determineKeySet() {
+        Set<KeyAdapter> keySet = determineBasicKeySet();
         keySet.addAll(determineExtendedKeySet(keySet));
         writeKeySetFile(keySet);
         return keySet;
     }
 
-    private Map<String, List<KeyValuesData>> determineValueMappings(Set<KeysAllData> keySet) {
-        Map<String, List<KeyValuesData>> valueMappings = new HashMap<>();
-        for(KeysAllData item: keySet) {
+    private Map<String, List<ValueAdapter>> determineValueMappings(Set<KeyAdapter> keySet) {
+        Map<String, List<ValueAdapter>> valueMappings = new HashMap<>();
+        for(KeyAdapter item: keySet) {
             valueMappings.put(item.getKey(), determineValuesForKey(item.getKey()));
         }
         writeKeyValueMappinsFile(valueMappings);
         return valueMappings;
     }
 
-    private List<KeyValuesData> determineValuesForKey(String key) {
-        List<KeyValuesData> valuesForKey = new ArrayList<>();
+    private List<ValueAdapter> determineValuesForKey(String key) {
+        List<ValueAdapter> valuesForKey = new ArrayList<>();
         KeyValues keyValues;
         int qualifiedOnPage, page=0;
         do {
@@ -81,7 +81,7 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
             for (KeyValuesData item : keyValues.getData()) {
                 if(isValueAccepted(item)) {
                     ++qualifiedOnPage;
-                    valuesForKey.add(item);
+                    valuesForKey.add(new ValueAdapter(item));
                 }
             }
             System.out.println("Qualified on page: "+qualifiedOnPage);
@@ -89,45 +89,15 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         return valuesForKey;
     }
 
-    // HINT: The functions should not do rest call "getStats" always. Instead
-    // the caller could decide, if he needs stats data and do it optionally.
-    // This also means, that the return value in our interfaces should be
-    // decoupled. Instead of KeysAllData it should be a common usable format,
-    // where e.g. stats data is optional.
-    KeysAllData convertStatsToCommonFormat(String key, KeyStats keyStats) {
-        KeysAllData keysAllData = new KeysAllData();
-        keysAllData.setKey(key);
-        for(KeyStatsData item: keyStats.getData()) {
-            switch (item.getType()) {
-                case "all":
-                    keysAllData.setCount_all(item.getCount());
-                    keysAllData.setCount_all_fraction(item.getCount_fraction());
-                    break;
-                case "nodes":
-                    keysAllData.setCount_nodes(item.getCount());
-                    keysAllData.setCount_nodes_fraction(item.getCount_fraction());
-                    break;
-                case "ways":
-                    keysAllData.setCount_ways(item.getCount());
-                    keysAllData.setCount_ways_fraction(item.getCount_fraction());
-                    break;
-                case "relations":
-                    keysAllData.setCount_relations(item.getCount());
-                    keysAllData.setCount_relations_fraction(item.getCount_fraction());
-                    break;
-            }
-        }
-        return keysAllData;
-    }
-
-    private void writeKeySetFile(Set<KeysAllData> keySet) {
+    private void writeKeySetFile(Set<KeyAdapter> keySet) {
         try(CSVPrinter csvPrinter = buildCSVPrinter("KeySet")) {
             csvPrinter.printRecord("Key",
                     "count_all", "count_all_fraction",
                     "count_nodes", "count_nodes_fraction",
                     "count_ways", "count_ways_fraction",
                     "count_relations", "count_relations_fraction");
-            for(KeysAllData item : keySet) {
+            for(KeyAdapter key : keySet) {
+                KeysAllData item = key.getKeysAllData();
                 csvPrinter.printRecord(item.getKey(),
                         item.getCount_all(), item.getCount_all_fraction(),
                         item.getCount_nodes(), item.getCount_nodes_fraction(),
@@ -139,13 +109,14 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         }
     }
 
-    private void writeKeyValueMappinsFile(Map<String, List<KeyValuesData>> keyValueMappings) {
+    private void writeKeyValueMappinsFile(Map<String, List<ValueAdapter>> keyValueMappings) {
         try(CSVPrinter csvPrinter = buildCSVPrinter("KeyValueMap")) {
             csvPrinter.printRecord("key", "value",
                     "count", "fraction",
                     "in_wiki", "description");
-            for(Map.Entry<String, List<KeyValuesData>> mapping : keyValueMappings.entrySet()) {
-                for(KeyValuesData valueData: mapping.getValue()) {
+            for(Map.Entry<String, List<ValueAdapter>> mapping : keyValueMappings.entrySet()) {
+                for(ValueAdapter valueAdapter: mapping.getValue()) {
+                    KeyValuesData valueData = valueAdapter.getKeyValuesData();
                     csvPrinter.printRecord(mapping.getKey(), valueData.getValue(),
                             valueData.getCount(), valueData.getFraction(),
                             valueData.getIn_wiki(), valueData.getDescription());

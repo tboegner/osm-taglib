@@ -27,11 +27,11 @@ public class KeySetCombinationsTagAggregator extends KeySetTagAggregator {
      * @return Found keys that occur in combinations with basic keys.
      */
     @Override
-    public Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet) {
-        Set<KeysAllData> extendedKeySet = new HashSet<>();
+    public Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet) {
+        Set<KeyAdapter> extendedKeySet = new HashSet<>();
         Set<String> qualifiedKeys = new HashSet<>();
         boolean fetchNextPage = true;
-        for(KeysAllData basicKeyData : basicKeySet) {
+        for(KeyAdapter basicKeyData : basicKeySet) {
             int page = 0;
             KeyCombinations keyCombinations;
             do {
@@ -40,7 +40,7 @@ public class KeySetCombinationsTagAggregator extends KeySetTagAggregator {
                     if (item.getTo_fraction() > qualifierCombinations) {
                         if(!qualifiedKeys.contains(item.getOther_key())) {
                             KeyStats keyStats = tagInfo.getKeyStats(item.getOther_key());
-                            extendedKeySet.add(convertStatsToCommonFormat(item.getOther_key(), keyStats));
+                            extendedKeySet.add(new KeyAdapter(item.getOther_key(), keyStats));
                             qualifiedKeys.add(item.getOther_key());
                         }
                     } else {

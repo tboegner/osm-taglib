@@ -24,11 +24,11 @@ public class KeySetTagAggregator extends RestTagAggregator {
      * @return Basic key set that was input enriched by usage stats.
      */
     @Override
-    public Set<KeysAllData> determineBasicKeySet() {
-        Set<KeysAllData> basicKeySet = new HashSet<>();
+    public Set<KeyAdapter> determineBasicKeySet() {
+        Set<KeyAdapter> basicKeySet = new HashSet<>();
         for (String key : inputKeySet) {
             KeyStats keyStats = tagInfo.getKeyStats(key);
-            basicKeySet.add(convertStatsToCommonFormat(key, keyStats));
+            basicKeySet.add(new KeyAdapter(key, keyStats));
         }
         return basicKeySet;
     }
@@ -39,7 +39,7 @@ public class KeySetTagAggregator extends RestTagAggregator {
      * @return Empty hash set.
      */
     @Override
-    public Set<KeysAllData> determineExtendedKeySet(Set<KeysAllData> basicKeySet) {
+    public Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet) {
         return new HashSet<>();
     }
 }

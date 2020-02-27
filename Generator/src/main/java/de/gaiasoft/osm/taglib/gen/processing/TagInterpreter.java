@@ -1,8 +1,8 @@
 package de.gaiasoft.osm.taglib.gen.processing;
 
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValuesData;
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeysAllData;
 import de.gaiasoft.osm.taglib.gen.aggregation.AggregationResult;
+import de.gaiasoft.osm.taglib.gen.aggregation.KeyAdapter;
+import de.gaiasoft.osm.taglib.gen.aggregation.ValueAdapter;
 import de.gaiasoft.osm.taglib.gen.generation.KeyDefinition;
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,16 +13,18 @@ public class TagInterpreter {
 
     public void interpretSegmentData(AggregationResult inputFromAggregation, KeySegment keySegment,
                                       InterpretationResult result) {
+        printStatsHeader("Segment " + keySegment.name());
+
         computeKeyDefinitions(keySegment, inputFromAggregation.keySet, result);
         computeValueDefinitions(keySegment, inputFromAggregation.keyValueMappings, result);
         computeValueMappings(keySegment, inputFromAggregation.keyValueMappings, result);
     }
 
-    private void computeKeyDefinitions(KeySegment segment, Set<KeysAllData> keySet,
+    private void computeKeyDefinitions(KeySegment segment, Set<KeyAdapter> keySet,
                                                      InterpretationResult result) {
         int countPrimary=0, countValueSet=0, countFreeValue=0;
         Set<KeyDefinition> keyDefinitions = new HashSet<>(keySet.size());
-        for(KeysAllData keyData : keySet) {
+        for(KeyAdapter keyData : keySet) {
             String key = keyData.getKey().toLowerCase();
             KeyDefinition keyDefinition = computeKeyDefinition(key);
             if(keyDefinition != null) {
@@ -37,7 +39,7 @@ public class TagInterpreter {
             }
         }
 
-        printStatsHeader("Key definitions stats");
+        printStepHeader("Key definitions stats");
         printStatsValue("input key set", keySet.size());
         printStatsValue("definitions computed", keyDefinitions.size());
         printStatsValue("FEATURE", countPrimary);
@@ -47,13 +49,13 @@ public class TagInterpreter {
         result.addKeysToSegment(segment, keyDefinitions);
     }
 
-    private void computeValueDefinitions(KeySegment segment, Map<String, List<KeyValuesData>> keyValueMap,
+    private void computeValueDefinitions(KeySegment segment, Map<String, List<ValueAdapter>> keyValueMap,
                                          InterpretationResult result) {
         Set<String> valueDefinitions = new HashSet<>();
         for(KeyDefinition keyDef : result.getKeySetOfSegment(segment)) {
-            List<KeyValuesData> valuesForKey = keyValueMap.get(keyDef.getId());
+            List<ValueAdapter> valuesForKey = keyValueMap.get(keyDef.getId());
             if(valuesForKey != null) {
-                for (KeyValuesData valueData : valuesForKey) {
+                for (ValueAdapter valueData : valuesForKey) {
                     String value = valueData.getValue().toLowerCase();
                     if (isValueDefinable(value)) {
                         valueDefinitions.add(value);
@@ -62,21 +64,21 @@ public class TagInterpreter {
             }
         }
 
-        printStatsHeader("Value definitions stats");
+        printStepHeader("Value definitions stats");
         printStatsValue("input key map", keyValueMap.size());
         printStatsValue("definitions computed", valueDefinitions.size());
 
         result.addValuesToSegment(segment, valueDefinitions);
     }
 
-    private void computeValueMappings(KeySegment segment, Map<String, List<KeyValuesData>> keyValueMap,
+    private void computeValueMappings(KeySegment segment, Map<String, List<ValueAdapter>> keyValueMap,
                                       InterpretationResult result)
     {
         Map<String, Set<String>> mappings = new HashMap<>(keyValueMap.size());
-        for(Map.Entry<String, List<KeyValuesData>> entry : keyValueMap.entrySet()) {
+        for(Map.Entry<String, List<ValueAdapter>> entry : keyValueMap.entrySet()) {
             if(isKeyDefinable(entry.getKey()) && result.getKeySetOfSegment(segment).contains(new KeyDefinition(entry.getKey()))) {
                 Set<String> valueSet = new HashSet<>();
-                for (KeyValuesData valueData : entry.getValue()) {
+                for (ValueAdapter valueData : entry.getValue()) {
                     String value = valueData.getValue();
                     if (isValueDefinable(value) && result.getValueSetOfSegment(segment).contains(value)) {
                         valueSet.add(valueData.getValue());
@@ -88,7 +90,7 @@ public class TagInterpreter {
             }
         }
 
-        printStatsHeader("Value mappings stats");
+        printStepHeader("Value mappings stats");
         printStatsValue("input key map", keyValueMap.size());
         printStatsValue("mappings computed", mappings.size());
 
@@ -134,7 +136,13 @@ public class TagInterpreter {
 
     private void printStatsHeader(String headline) {
         System.out.println("\n=== "+headline+" ===");
-        int lineLength = headline.length()+8;
+    }
+
+    private void printStepHeader(String headline) {
+        System.out.println("  "+headline);
+    }
+
+    private void printUnderline(int lineLength) {
         for(int i=0; i<lineLength; ++i) {
             System.out.print('=');
         }
@@ -142,6 +150,6 @@ public class TagInterpreter {
     }
 
     private void printStatsValue(String label, int value) {
-        System.out.println(label + " : " + value);
+        System.out.println("    "+label + " : " + value);
     }
 }

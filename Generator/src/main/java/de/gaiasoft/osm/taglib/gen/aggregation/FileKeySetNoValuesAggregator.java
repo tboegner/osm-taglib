@@ -1,6 +1,5 @@
 package de.gaiasoft.osm.taglib.gen.aggregation;
 
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeysAllData;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
@@ -22,9 +21,7 @@ public class FileKeySetNoValuesAggregator implements TagAggregatorStrategy {
         try {
             CSVParser csvParser = CSVParser.parse(inputFile, Charset.defaultCharset(), CSVFormat.DEFAULT);
             csvParser.forEach(record -> {
-                KeysAllData data = new KeysAllData();
-                data.setKey(record.get(0));
-                result.keySet.add(data);
+                result.keySet.add(new KeyAdapter(record.get(0)));
             });
         } catch (IOException e) {
             e.printStackTrace();

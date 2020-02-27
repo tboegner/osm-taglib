@@ -15,11 +15,11 @@ public class SqliteTagAggregator implements TagAggregatorStrategy {
         this.inputKeySet = inputKeySet;
     }
 
-    private Map<String, List<KeyValuesData>> loadKeyValuesMap(Connection conn) throws SQLException {
-        Map<String, List<KeyValuesData>> keyValuesMap = new HashMap<>();
+    private Map<String, List<ValueAdapter>> loadKeyValuesMap(Connection conn) throws SQLException {
+        Map<String, List<ValueAdapter>> keyValuesMap = new HashMap<>();
         String query = "select key, value from wikipages_tags" + getInputKeysAsInClause();
         ResultSet rs = conn.createStatement().executeQuery(query);
-        List<KeyValuesData> valueList;
+        List<ValueAdapter> valueList;
         KeyValuesData valueData;
         while (rs.next()) {
             String key = rs.getString("key");
@@ -27,19 +27,19 @@ public class SqliteTagAggregator implements TagAggregatorStrategy {
             valueData = new KeyValuesData();
             valueData.setValue(rs.getString("value"));
             valueData.setIn_wiki(true);
-            valueList.add(valueData);
+            valueList.add(new ValueAdapter(valueData));
         }
         return keyValuesMap;
     }
 
-    private Set<KeysAllData> loadKeySet(Connection conn) {
-        Set<KeysAllData> keySet = new HashSet<>();
+    private Set<KeyAdapter> loadKeySet(Connection conn) {
+        Set<KeyAdapter> keySet = new HashSet<>();
         KeysAllData keyData;
         for (String key : inputKeySet) {
             keyData = new KeysAllData();
             keyData.setKey(key);
             keyData.setIn_wiki(true);
-            keySet.add(keyData);
+            keySet.add(new KeyAdapter(keyData));
         }
         return keySet;
     }
