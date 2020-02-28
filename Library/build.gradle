@@ -4,6 +4,7 @@ apply plugin: 'maven-publish'
 publishing {
     publications {
         osmTaglib(MavenPublication) {
+            artifactId = 'osm-taglib-library'
             from components.java
         }
     }

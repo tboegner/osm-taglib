@@ -3,8 +3,8 @@ package de.gaiasoft.osm.taglib.def;
 import de.gaiasoft.osm.taglib.base.ValueBase;
 
 public enum Value_MILITARY implements ValueBase {
-    AMMUNITION("ammunition"),
     CHECKPOINT("checkpoint"),
+    AMMUNITION("ammunition"),
     BUNKER("bunker"),
     LAUNCHPAD("launchpad"),
     TRENCH("trench"),
@@ -17,7 +17,6 @@ public enum Value_MILITARY implements ValueBase {
     OBSTACLE_COURSE("obstacle_course"),
     NAVAL_BASE("naval_base"),
     DANGER_AREA("danger_area"),
-    EXCLUSION_ZONE("exclusion_zone"),
     ;
 
     private String value;
