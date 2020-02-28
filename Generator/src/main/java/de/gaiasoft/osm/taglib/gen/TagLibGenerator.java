@@ -48,9 +48,11 @@ public class TagLibGenerator {
         AggregationResult aggregatedKeys;
         AggregationResult aggregatedTags;
 
-        // Primary keys + values
-        aggregatedKeys = readKeySetFromFile("PrimaryKeys.csv");
-        aggregatedTags = new SqliteTagAggregator(aggregatedKeys.getSimpleKeySet()).aggregateTagData();
+        // Primary keys + values via REST (demand wiki entry)
+        aggregatedTags = new KeySetTagAggregator(readKeySetFromFile("PrimaryKeys.csv").getSimpleKeySet())
+                .withValueMustBeInWiki(true)
+                .withPageSizeForKeyValue(100)
+                .aggregateTagData();
         interpreter.interpretSegmentData(aggregatedTags, KeySegment.PRIMARY, interpretationResult);
 
         // Address keys, no values
@@ -65,14 +67,15 @@ public class TagLibGenerator {
         aggregatedKeys = readKeySetFromFile("AnnotationKeys.csv");
         interpreter.interpretSegmentData(aggregatedKeys, KeySegment.ANNOTATION, interpretationResult);
 
-        // Property keys + values
-        aggregatedKeys = readKeySetFromFile("PropertyKeys.csv");
-        aggregatedTags = new SqliteTagAggregator(aggregatedKeys.getSimpleKeySet()).aggregateTagData();
+        // Property keys + values via REST (demand wiki entry)
+        aggregatedTags = new KeySetTagAggregator(readKeySetFromFile("PropertyKeys.csv").getSimpleKeySet())
+                .withValueMustBeInWiki(true)
+                .aggregateTagData();
         interpreter.interpretSegmentData(aggregatedTags, KeySegment.PROPERTY, interpretationResult);
 
         // Whitelisted keys via REST-Aggregator
-        aggregatedKeys = readKeySetFromFile("WhitelistedKeys.csv");
-        aggregatedTags = new KeySetTagAggregator(aggregatedKeys.getSimpleKeySet()).aggregateTagData();
+        aggregatedTags = new KeySetTagAggregator(readKeySetFromFile("WhitelistedKeys.csv").getSimpleKeySet())
+                .aggregateTagData();
         interpreter.interpretSegmentData(aggregatedTags, KeySegment.DETAIL, interpretationResult);
 
         generator.generateSourceCode(interpretationResult);

@@ -17,7 +17,8 @@ public class CSVBuilder implements AutoCloseable {
     public enum Type {
         KEY_SET("KeySet", new Object[]{"key", "count_all", "count_all_fraction", "count_nodes", "count_nodes_fraction",
                 "count_ways", "count_ways_fraction", "count_relations", "count_relations_fraction"}),
-        KEY_VALUE_MAP("KeyValueMap", new Object[]{"key", "value", "count", "fraction", "in_wiki", "description"}),
+        KEY_VALUE_MAP("KeyValueMap", new Object[]{"key", "value", "count", "fraction", "in_wiki", "description",
+                "accepted", "disqualified (Usage|Wiki)", "qualified (Usage|Wiki)"}),
         REST_CALL("RestCall", new Object[]{"key", "page", "pageSize", "total", "results", "qualifiedItems"});
         String id;
         Object[] header;
@@ -76,19 +77,21 @@ public class CSVBuilder implements AutoCloseable {
     }
 
     public void buildValueRecord(String key, ValueAdapter value) {
-        KeyValuesData valueData = value.getKeyValuesData();
-        print(key, valueData.getValue(),
-              valueData.getCount(), valueData.getFraction(),
-              valueData.getIn_wiki(), valueData.getDescription());
+        KeyValuesData v = value.getKeyValuesData();
+        ValueAdapter.Qualification q = value.getQualification();
+        String disqualified = q.disqualifiedByUsage+"|"+q.disqualifiedByMissingWiki;
+        String qualified = q.qualifiedByUsage+"|"+q.qualifiedByWiki;
+        print(key, v.getValue(), v.getCount(), v.getFraction(), v.getIn_wiki(), v.getDescription(),
+                q.accepted, disqualified, qualified);
     }
 
     public void buildKeyRecord(KeyAdapter key) {
-        KeysAllData item = key.getKeysAllData();
-        if(item != null) {
-            print(item.getKey(), item.getCount_all(), item.getCount_all_fraction(),
-                    item.getCount_nodes(), item.getCount_nodes_fraction(),
-                    item.getCount_ways(), item.getCount_ways_fraction(),
-                    item.getCount_relations(), item.getCount_relations_fraction());
+        KeysAllData k = key.getKeysAllData();
+        if(k != null) {
+            print(k.getKey(), k.getCount_all(), k.getCount_all_fraction(),
+                    k.getCount_nodes(), k.getCount_nodes_fraction(),
+                    k.getCount_ways(), k.getCount_ways_fraction(),
+                    k.getCount_relations(), k.getCount_relations_fraction());
         }
     }
 

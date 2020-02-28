@@ -15,7 +15,9 @@ import java.util.*;
  */
 public abstract class RestTagAggregator implements TagAggregatorStrategy {
     private double qualifierValueUsage = 0.05;
+    private double disqualifierValueUsage = 0.0001;
     private int pageSizeForKeyValue = 25;
+    private boolean valueMustBeInWiki = false;
 
     TagInfoRestClient tagInfo;
 
@@ -33,16 +35,34 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         return this;
     }
 
+    public RestTagAggregator withDisqualifierValueUsage(double disqualifier) {
+        this.disqualifierValueUsage = disqualifier;
+        return this;
+    }
+
+    public RestTagAggregator withValueMustBeInWiki(boolean inWiki) {
+        this.valueMustBeInWiki = inWiki;
+        return this;
+    }
+
     abstract Set<KeyAdapter> determineBasicKeySet();
     abstract Set<KeyAdapter> determineExtendedKeySet(Set<KeyAdapter> basicKeySet);
 
 
-    private boolean isValueAccepted(KeyValuesData valueData) {
-        boolean qualifiedByUsage = valueData.getFraction() > qualifierValueUsage;
-        boolean disqualifiedByUsage =  valueData.getFraction() <= 0.0001;
-        boolean disqualifiedByDescription = valueData.getDescription() == null || valueData.getDescription().isEmpty() || valueData.getDescription().equals("null");
-        boolean notDisqualified = !(disqualifiedByUsage || disqualifiedByDescription);
-        return (qualifiedByUsage || (valueData.getIn_wiki() && notDisqualified));
+    private boolean isValueAccepted(ValueAdapter valueAdapter) {
+        KeyValuesData valueData = valueAdapter.getKeyValuesData();
+        ValueAdapter.Qualification q = valueAdapter.getQualification();
+
+        q.disqualifiedByUsage =  valueData.getFraction() <= disqualifierValueUsage;
+        q.disqualifiedByMissingWiki = valueMustBeInWiki && !valueData.getIn_wiki();
+        q.notDisqualified = !(q.disqualifiedByUsage || q.disqualifiedByMissingWiki);
+
+        q.qualifiedByUsage = valueData.getFraction() > qualifierValueUsage;
+        q.qualifiedByWiki = valueData.getIn_wiki() && valueData.getDescription() != null &&
+                !valueData.getDescription().isEmpty() && !valueData.getDescription().equals("null");
+
+        q.accepted = q.notDisqualified && (q.qualifiedByUsage || q.qualifiedByWiki);
+        return q.accepted;
     }
 
     @Override
@@ -65,7 +85,6 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         for(KeyAdapter item: keySet) {
             valueMappings.put(item.getKey(), determineValuesForKey(item.getKey()));
         }
-        writeKeyValueMappinsFile(valueMappings);
         return valueMappings;
     }
 
@@ -73,20 +92,27 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         List<ValueAdapter> valuesForKey = new ArrayList<>();
         KeyValues keyValues;
         int qualifiedOnPage, page=0;
-        try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.REST_CALL, getClass().getSimpleName())) {
-            do {
-                keyValues = tagInfo.getKeyValues(key, ++page, pageSizeForKeyValue, TagInfoRestClient.SORT_COUNT_ALL, false);
+        boolean notUsageLimitReached = true;
+        CSVBuilder restLogger = new CSVBuilder(CSVBuilder.Type.REST_CALL, getClass().getSimpleName());
+        CSVBuilder keyValueLogger = new CSVBuilder(CSVBuilder.Type.KEY_VALUE_MAP, getClass().getSimpleName());
+        do {
+            keyValues = tagInfo.getKeyValues(key, ++page, pageSizeForKeyValue, TagInfoRestClient.SORT_COUNT_ALL, false);
 
-                qualifiedOnPage = 0;
-                for (KeyValuesData item : keyValues.getData()) {
-                    if (isValueAccepted(item)) {
-                        ++qualifiedOnPage;
-                        valuesForKey.add(new ValueAdapter(item));
-                    }
+            qualifiedOnPage = 0;
+            for (KeyValuesData item : keyValues.getData()) {
+                ValueAdapter value = new ValueAdapter(item);
+                if (isValueAccepted(value)) {
+                    ++qualifiedOnPage;
+                    valuesForKey.add(value);
                 }
-                csvBuilder.buildRestCallRecord(new CSVBuilder.RestData(key, page, pageSizeForKeyValue, keyValues.getTotal(), keyValues.getData().size(), qualifiedOnPage));
-            } while (keyValues.getData().size() == pageSizeForKeyValue && qualifiedOnPage > 0);
-        }
+                keyValueLogger.buildValueRecord(key, value);
+                notUsageLimitReached = !value.getQualification().disqualifiedByUsage;
+            }
+            restLogger.buildRestCallRecord(new CSVBuilder.RestData(key, page, pageSizeForKeyValue, keyValues.getTotal(), keyValues.getData().size(), qualifiedOnPage));
+        } while (keyValues.getData().size() == pageSizeForKeyValue && notUsageLimitReached && qualifiedOnPage > 0);
+
+        restLogger.close();
+        keyValueLogger.close();
         return valuesForKey;
     }
 
@@ -94,16 +120,6 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.KEY_SET, getClass().getSimpleName())) {
             for(KeyAdapter key : keySet) {
                 csvBuilder.buildKeyRecord(key);
-            }
-        }
-    }
-
-    private void writeKeyValueMappinsFile(Map<String, List<ValueAdapter>> keyValueMappings) {
-        try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.KEY_VALUE_MAP, getClass().getSimpleName())) {
-            for(Map.Entry<String, List<ValueAdapter>> mapping : keyValueMappings.entrySet()) {
-                for(ValueAdapter valueAdapter: mapping.getValue()) {
-                    csvBuilder.buildValueRecord(mapping.getKey(), valueAdapter);
-                }
             }
         }
     }

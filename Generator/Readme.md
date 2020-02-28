@@ -9,11 +9,15 @@ The process consists of three steps:
 ### Aggregation
 The aggregation is highly modular and done by multiple implementations of the `TagAggregatorStrategy` interface. The 
 first intention was to aggregate keys and values by the TagInfo REST interface in combination with smart filters. This 
-resulted in complicated, hard maintainable threshold logic executing many REST calls. These attempts resulted in many 
+resulted in complicated, hard maintainable threshold logic executing many REST calls. These attempts lead to many 
 aggregators which are currently unused.  
 Currently the relevant keys are aggregated by multiple csv-files (separated by osm-feature-sections in wiki) by the 
 `FileKeySetNoValuesAggregator`. 
-**TODO: describe value aggregation**
+For the sections 'Primary' and 'Property' the known values are determined via the rest interface. The acceptance
+criteria are that a value is mentioned in wiki and has a minimum percentage of occurrence with its key.
+The sections 'Address', 'Name' and 'Annotation' are expected to have no known distinct values, therefore no value 
+detection is done.
+The Values for keys from the 'Whitelist' don't have to be in wiki, they can qualify by high percentage of occurrence. 
 
 ### Interpretation
 The data collected from the aggregation step are processed and checked for plausibility. This step is done for each
@@ -32,8 +36,8 @@ languages. Currently only an implementation for java exists.
 * Support for namespaces (enums defined but not used for generation)
   * Defined Namespaces are very rudimentary
   * Namespace can't be distinguished from normal subkey (type-discrepancy)
-* Problem: sqlite-DB liegt lokal vor und veraltet.
-* Stats in der Konsole lesbarer/verständlicher machen
+* Enable also free values for a key if known values are detected by a control flag -> type information for keys needed
+* Enable usage thresholds for values per input key.  
 * Check:
   KeySetCombinationsTagAggregator (getKeyStats?)
   AllKeysTagAggregator
@@ -66,11 +70,3 @@ Evtl. ja, dann haben wir eine Standard-Implementierung, von der jedermann abweic
 * Wrapper-Hilfsklasse für Enums schreiben (unter Berücksichtigung des SiteFinder)
 * Aufräumen
 
-**Evakuiert aus Key-Template:**
-    Key#0#(String key, boolean allowShortKey) {
-        this.key = key;
-        if(allowShortKey && key.contains(":")) {
-            String[] keyParts = key.split(":");
-            shortKey = keyParts[keyParts.length-1];
-        }
-    }

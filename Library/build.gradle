@@ -1,0 +1,21 @@
+apply plugin: 'maven-publish'
+
+// TODO: solve publish problem
+publishing {
+    publications {
+        osmTaglib(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'Private'
+            url = 'https://gaiasoft.de/archiva/repository/private/'
+            credentials {
+                username = 'gradle'
+                password = 'ahSoexe7'
+            }
+        }
+    }
+}

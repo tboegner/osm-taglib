@@ -1,9 +1,7 @@
 subprojects {
-    // TODO: cleanup code not for all subs
     apply plugin: 'java'
-    apply plugin: 'maven-publish'
     group 'de.gaiasoft.osm'
-    version = 0.43
+    version = 0.44
     sourceCompatibility = 1.11
     targetCompatibility = 1.11
 
@@ -25,24 +23,5 @@ subprojects {
 
     test {
         useJUnitPlatform()
-    }
-
-    publishing {
-        publications {
-            osmTaglib(MavenPublication) {
-                from components.java
-            }
-        }
-
-        repositories {
-            maven {
-                name = 'Private'
-                url = 'https://gaiasoft.de/archiva/repository/private/'
-                credentials {
-                    username = 'gradle'
-                    password = 'ahSoexe7'
-                }
-            }
-        }
     }
 }

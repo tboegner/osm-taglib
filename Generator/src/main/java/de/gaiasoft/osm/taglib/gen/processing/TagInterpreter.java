@@ -39,12 +39,13 @@ public class TagInterpreter {
             }
         }
 
-        printStepHeader("Key definitions stats");
-        printStatsValue("input key set", keySet.size());
-        printStatsValue("definitions computed", keyDefinitions.size());
-        printStatsValue("FEATURE", countPrimary);
-        printStatsValue("SUBKEY", countValueSet);
-        printStatsValue("NAMESPACE", countFreeValue);
+        print("[Key stats]: ");
+        printStatsValue("input keys", keySet.size());
+        printStatsValue(" -> key definitions", keyDefinitions.size());
+        printStatsValue(" (FEATURE", countPrimary);
+        printStatsValue("; SUBKEY", countValueSet);
+        printStatsValue("; NAMESPACE", countFreeValue);
+        printLine(")");
 
         result.addKeysToSegment(segment, keyDefinitions);
     }
@@ -52,10 +53,12 @@ public class TagInterpreter {
     private void computeValueDefinitions(KeySegment segment, Map<String, List<ValueAdapter>> keyValueMap,
                                          InterpretationResult result) {
         Set<String> valueDefinitions = new HashSet<>();
+        int valueCount = 0;
         for(KeyDefinition keyDef : result.getKeySetOfSegment(segment)) {
             List<ValueAdapter> valuesForKey = keyValueMap.get(keyDef.getId());
             if(valuesForKey != null) {
                 for (ValueAdapter valueData : valuesForKey) {
+                    ++valueCount;
                     String value = valueData.getValue().toLowerCase();
                     if (isValueDefinable(value)) {
                         valueDefinitions.add(value);
@@ -64,9 +67,11 @@ public class TagInterpreter {
             }
         }
 
-        printStepHeader("Value definitions stats");
-        printStatsValue("input key map", keyValueMap.size());
-        printStatsValue("definitions computed", valueDefinitions.size());
+        print("[Value stats]: ");
+        printStatsValue("input keys/values", keyValueMap.size());
+        printStatsValue("/", valueCount);
+        printStatsValue(" -> value definitions", valueDefinitions.size());
+        printLine("");
 
         result.addValuesToSegment(segment, valueDefinitions);
     }
@@ -75,24 +80,29 @@ public class TagInterpreter {
                                       InterpretationResult result)
     {
         Map<String, Set<String>> mappings = new HashMap<>(keyValueMap.size());
+        int mappingCount = 0, valueCount = 0;
         for(Map.Entry<String, List<ValueAdapter>> entry : keyValueMap.entrySet()) {
             if(isKeyDefinable(entry.getKey()) && result.getKeySetOfSegment(segment).contains(new KeyDefinition(entry.getKey()))) {
                 Set<String> valueSet = new HashSet<>();
                 for (ValueAdapter valueData : entry.getValue()) {
+                    ++valueCount;
                     String value = valueData.getValue();
                     if (isValueDefinable(value) && result.getValueSetOfSegment(segment).contains(value)) {
                         valueSet.add(valueData.getValue());
                     }
                 }
                 if (!valueSet.isEmpty()) {
+                    mappingCount += valueSet.size();
                     mappings.put(entry.getKey(), valueSet);
                 }
             }
         }
 
-        printStepHeader("Value mappings stats");
-        printStatsValue("input key map", keyValueMap.size());
-        printStatsValue("mappings computed", mappings.size());
+        print("[Mapping stats]: ");
+        printStatsValue("input keys/values", keyValueMap.size());
+        printStatsValue("/", valueCount);
+        printStatsValue(" -> mappings", mappingCount);
+        printLine("");
 
         result.addKeyValueMappings(segment, mappings);
     }
@@ -138,18 +148,15 @@ public class TagInterpreter {
         System.out.println("\n=== "+headline+" ===");
     }
 
-    private void printStepHeader(String headline) {
-        System.out.println("  "+headline);
+    private void printLine(String line) {
+        System.out.println(line);
     }
 
-    private void printUnderline(int lineLength) {
-        for(int i=0; i<lineLength; ++i) {
-            System.out.print('=');
-        }
-        System.out.print('\n');
+    private void print(String text) {
+        System.out.print(text);
     }
 
     private void printStatsValue(String label, int value) {
-        System.out.println("    "+label + " : " + value);
+        System.out.print(label + ": " + value);
     }
 }
