@@ -73,42 +73,38 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
         List<ValueAdapter> valuesForKey = new ArrayList<>();
         KeyValues keyValues;
         int qualifiedOnPage, page=0;
-        do {
-            keyValues = tagInfo.getKeyValues(key, ++page, pageSizeForKeyValue, TagInfoRestClient.SORT_COUNT_ALL, false);
+        try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.REST_CALL, getClass().getSimpleName())) {
+            do {
+                keyValues = tagInfo.getKeyValues(key, ++page, pageSizeForKeyValue, TagInfoRestClient.SORT_COUNT_ALL, false);
 
-            qualifiedOnPage = 0;
-            for (KeyValuesData item : keyValues.getData()) {
-                if(isValueAccepted(item)) {
-                    ++qualifiedOnPage;
-                    valuesForKey.add(new ValueAdapter(item));
+                qualifiedOnPage = 0;
+                for (KeyValuesData item : keyValues.getData()) {
+                    if (isValueAccepted(item)) {
+                        ++qualifiedOnPage;
+                        valuesForKey.add(new ValueAdapter(item));
+                    }
                 }
-            }
-            System.out.println("Qualified on page: "+qualifiedOnPage);
-        } while(keyValues.getData().size() == pageSizeForKeyValue && qualifiedOnPage > 0);
+                csvBuilder.buildRestCallRecord(new CSVBuilder.RestData(key, page, pageSizeForKeyValue, keyValues.getTotal(), keyValues.getData().size(), qualifiedOnPage));
+            } while (keyValues.getData().size() == pageSizeForKeyValue && qualifiedOnPage > 0);
+        }
         return valuesForKey;
     }
 
     private void writeKeySetFile(Set<KeyAdapter> keySet) {
-        try(CSVBuilder csvBuilder = new CSVBuilder("KeySet", getClass().getSimpleName())) {
-            csvBuilder.buildKeySetHeader();
+        try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.KEY_SET, getClass().getSimpleName())) {
             for(KeyAdapter key : keySet) {
                 csvBuilder.buildKeyRecord(key);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     private void writeKeyValueMappinsFile(Map<String, List<ValueAdapter>> keyValueMappings) {
-        try(CSVBuilder csvBuilder = new CSVBuilder("KeyValueMap", getClass().getSimpleName())) {
-            csvBuilder.buildKeyValueMapHeader();
+        try(CSVBuilder csvBuilder = new CSVBuilder(CSVBuilder.Type.KEY_VALUE_MAP, getClass().getSimpleName())) {
             for(Map.Entry<String, List<ValueAdapter>> mapping : keyValueMappings.entrySet()) {
                 for(ValueAdapter valueAdapter: mapping.getValue()) {
                     csvBuilder.buildValueRecord(mapping.getKey(), valueAdapter);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

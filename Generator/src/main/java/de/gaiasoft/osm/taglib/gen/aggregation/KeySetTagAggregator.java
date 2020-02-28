@@ -1,10 +1,7 @@
 package de.gaiasoft.osm.taglib.gen.aggregation;
 
-import de.gaiasoft.osm.taglib.rest.taginfo.TagInfoRestClient;
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyCombinations;
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyCombinationsData;
+import de.gaiasoft.osm.taglib.gen.util.ConfigManager;
 import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyStats;
-import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeysAllData;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,9 +23,14 @@ public class KeySetTagAggregator extends RestTagAggregator {
     @Override
     public Set<KeyAdapter> determineBasicKeySet() {
         Set<KeyAdapter> basicKeySet = new HashSet<>();
+        boolean fetchKeyStats = ConfigManager.getInstance().getFetchKeyStats();
         for (String key : inputKeySet) {
-            KeyStats keyStats = tagInfo.getKeyStats(key);
-            basicKeySet.add(new KeyAdapter(key, keyStats));
+            if(fetchKeyStats) {
+                KeyStats keyStats = tagInfo.getKeyStats(key);
+                basicKeySet.add(new KeyAdapter(key, keyStats));
+            } else {
+                basicKeySet.add(new KeyAdapter(key));
+            }
         }
         return basicKeySet;
     }

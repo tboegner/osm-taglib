@@ -33,10 +33,9 @@ languages. Currently only an implementation for java exists.
   * Defined Namespaces are very rudimentary
   * Namespace can't be distinguished from normal subkey (type-discrepancy)
 * Problem: sqlite-DB liegt lokal vor und veraltet.
-* CSV-Ausgabe verbessern/ logs ablegen? Konfig?
 * Stats in der Konsole lesbarer/verständlicher machen
 * Check:
-  KeySetCombinationsTagAggregator (getKeyStats? also for KeySetTagAggregator)
+  KeySetCombinationsTagAggregator (getKeyStats?)
   AllKeysTagAggregator
   ProjectKeysTagAggregator
   

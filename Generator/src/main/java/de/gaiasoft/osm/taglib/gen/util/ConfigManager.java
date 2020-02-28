@@ -48,4 +48,8 @@ public class ConfigManager {
     public String getLogDir() {
         return configProperties.getProperty("logDir")+"/";
     }
+
+    public boolean getFetchKeyStats() {
+        return Boolean.parseBoolean(configProperties.getProperty("fetchKeyStats"));
+    }
 }
