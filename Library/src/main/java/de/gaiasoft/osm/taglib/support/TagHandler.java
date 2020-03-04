@@ -56,11 +56,11 @@ public class TagHandler {
     /**
      * Checker for known/limited values existing for a key.
      * @param key Key of OSM-Tag.
-     * @return True, if key has known values. False, if key not supported or it has no known values.
+     * @return True, if key can have free values. False, if key unknown or it can not have free values.
      */
-    public boolean hasKeyLimitedValues(String key) {
+    public boolean isKeySupportingFreeValues(String key) {
         KeyInfo keyInfo = findKey(key);
-        return keyInfo != null && keyInfo.valueEnum != null;
+        return keyInfo != null && keyInfo.valueEnum == null;
     }
 
     /**
@@ -81,17 +81,5 @@ public class TagHandler {
             }
         }
         return null;
-    }
-
-    /**
-     * Checker for a value is valid/known for a key.
-     * @param key Key of OSM-Tag.
-     * @param value Value of OSM-Tag.
-     * @return True, if value is known/valid for key. False, if key is not supported or value is
-     * not known for key.
-     */
-    // TODO: Exception, if values are not limited
-    public boolean isValueValidForKey(String key, String value) {
-        return findValidValueForKey(key, value) != null;
     }
 }

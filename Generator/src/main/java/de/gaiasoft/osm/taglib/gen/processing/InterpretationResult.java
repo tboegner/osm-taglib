@@ -28,7 +28,6 @@ public class InterpretationResult {
     }
 
     void addKeyValueMappings(KeySegment segment, Map<String, Set<String>> mappings) {
-        // TODO: do not overwrite existing?
         segmentMap.get(segment).keyValueMappings.putAll(mappings);
     }
 

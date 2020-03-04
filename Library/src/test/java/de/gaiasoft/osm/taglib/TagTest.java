@@ -1,5 +1,6 @@
 package de.gaiasoft.osm.taglib;
 
+import de.gaiasoft.osm.taglib.base.ValueBase;
 import de.gaiasoft.osm.taglib.support.KeyInfo;
 import de.gaiasoft.osm.taglib.support.TagHandler;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -82,8 +83,8 @@ class TagTest {
         KeyInfo keyInfo = tagHandler.findKey(key);
         assertNotNull(keyInfo);
 
-        boolean valueValidForKey = tagHandler.isValueValidForKey(key, value);
-        assertTrue(valueValidForKey);
+        ValueBase validValue = tagHandler.findValidValueForKey(key, value);
+        assertNotNull(validValue);
     }
 
 }
