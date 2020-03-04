@@ -2,6 +2,11 @@ package de.gaiasoft.osm.taglib.def;
 
 import de.gaiasoft.osm.taglib.base.ValueBase;
 
+/*  This file is auto-generated.
+    The values of the enum are extracted from OpenStreetMap data. Therefore this enum is considered to be something
+    database-like and its values are made available under the Open Database License:
+    http://opendatacommons.org/licenses/odbl/1.0/.
+*/
 public enum Value_SPORT implements ValueBase {
     EQUESTRIAN("equestrian"),
     CANOE("canoe"),
@@ -61,6 +66,7 @@ public enum Value_SPORT implements ValueBase {
     CROQUET("croquet"),
     GOLF("golf"),
     KORFBALL("korfball"),
+    RACQUET("racquet"),
     PADDLE_TENNIS("paddle_tennis"),
     RUGBY_LEAGUE("rugby_league"),
     _10PIN("10pin"),
