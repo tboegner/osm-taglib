@@ -1,4 +1,4 @@
-#OsmTagLib
+# OsmTagLib
 
 The OsmTagLib is an attempt to provide a library with known and established OSM tags. The main criteria for the "established" state is the fact that the tag is discribed in the [map feature documentation](https://wiki.openstreetmap.org/wiki/Map_Features) in the OSM-wiki.
 
@@ -9,5 +9,5 @@ The project consists of three separate submodules:
 * [Generator](Generator/Readme.md) for the library
 * [Library](Library/Readme.md) with tag definitions
 
-**TODO:**
-* Include License (SW + Data)
+## License
+The project is licensed under Apache 2.0.

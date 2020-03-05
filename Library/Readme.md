@@ -1,4 +1,4 @@
-##Submodule Library
+## Submodule Library
 The most important OSM-Tags are defined as Enum-values. The supported keys reside in the Enum 
 `de.gaiasoft.osm.taglib.def.Key`
 
@@ -10,6 +10,6 @@ The values of the enums are is made available under the Open Database License:
 http://opendatacommons.org/licenses/odbl/1.0/.
 
 
-###ToDos + improvements
+### ToDos + improvements
 * Create KeyUnknown-Exception and throw it in TagHandler-functions working on a key (except findKey() )   
 * Concept for keys having known as well as free values in combination (-> work in generator)

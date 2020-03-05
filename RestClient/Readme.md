@@ -1,4 +1,4 @@
-##Submodule RestClient
+## Submodule RestClient
 
 The REST client is realized with Spring-Web. Currently only a few REST endpoints are implemented.
 

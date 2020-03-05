@@ -33,7 +33,7 @@ languages. Currently only an implementation for java exists.
 The key definitions are generated into one single enum. For a high number of keys, this can be problematic. In Java 8
 more than 2000 enum values in a single enum lead to a compiler error in the library.
 
-###ToDos + improvements
+### ToDos + improvements
 * Make the generator runable by gradle task.
 * Support for namespaces (enums defined but not used for generation)
   * Defined Namespaces are very rudimentary
