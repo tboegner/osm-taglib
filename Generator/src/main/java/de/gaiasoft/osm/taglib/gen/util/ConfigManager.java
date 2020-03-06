@@ -49,6 +49,10 @@ public class ConfigManager {
         return configProperties.getProperty("logDir")+"/";
     }
 
+    public String getTaginfoBaseUrl() {
+        return configProperties.getProperty("taginfoBaseUrl");
+    }
+
     public boolean getFetchKeyStats() {
         return Boolean.parseBoolean(configProperties.getProperty("fetchKeyStats"));
     }

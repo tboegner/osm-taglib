@@ -9,5 +9,9 @@ The project consists of three separate submodules:
 * [Generator](Generator/Readme.md) for the library
 * [Library](Library/Readme.md) with tag definitions
 
-## License
+### License
 The project is licensed under Apache 2.0.
+
+### Author
+Timo Bögner  
+https://gaiasoft.de

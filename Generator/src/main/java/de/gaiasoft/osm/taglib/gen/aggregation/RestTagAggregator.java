@@ -1,6 +1,7 @@
 package de.gaiasoft.osm.taglib.gen.aggregation;
 
 import de.gaiasoft.osm.taglib.gen.util.CSVBuilder;
+import de.gaiasoft.osm.taglib.gen.util.ConfigManager;
 import de.gaiasoft.osm.taglib.rest.taginfo.TagInfoRestClient;
 import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValues;
 import de.gaiasoft.osm.taglib.rest.taginfo.bean.KeyValuesData;
@@ -22,7 +23,7 @@ public abstract class RestTagAggregator implements TagAggregatorStrategy {
     TagInfoRestClient tagInfo;
 
     RestTagAggregator() {
-        tagInfo = new TagInfoRestClient();
+        tagInfo = new TagInfoRestClient(ConfigManager.getInstance().getTaginfoBaseUrl());
     }
 
     public RestTagAggregator withPageSizeForKeyValue(int pageSize) {
