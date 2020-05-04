@@ -27,6 +27,7 @@ public enum Value_TOURISM implements ValueBase {
     INFORMATION("information"),
     CAMP_SITE("camp_site"),
     THEME_PARK("theme_park"),
+    BED_AND_BREAKFAST("bed_and_breakfast"),
     ZOO("zoo"),
     PICNIC_SITE("picnic_site"),
     APARTMENT("apartment"),

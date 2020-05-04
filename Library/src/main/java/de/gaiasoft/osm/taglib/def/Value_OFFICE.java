@@ -49,6 +49,7 @@ public enum Value_OFFICE implements ValueBase {
     RELIGION("religion"),
     MOVING_COMPANY("moving_company"),
     NOTARY("notary"),
+    PRIVATE_INVESTIGATOR("private_investigator"),
     FORESTRY("forestry"),
     GRAPHIC_DESIGN("graphic_design"),
     ;

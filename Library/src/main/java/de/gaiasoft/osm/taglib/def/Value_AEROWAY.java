@@ -9,6 +9,7 @@ import de.gaiasoft.osm.taglib.base.ValueBase;
 */
 public enum Value_AEROWAY implements ValueBase {
     HANGAR("hangar"),
+    LAUNCHPAD("launchpad"),
     FUEL("fuel"),
     RUNWAY("runway"),
     APRON("apron"),
