@@ -1,6 +1,7 @@
 package de.gaiasoft.osm.taglib.support;
 
 
+import de.gaiasoft.osm.taglib.base.KeyBase;
 import de.gaiasoft.osm.taglib.base.ValueBase;
 import de.gaiasoft.osm.taglib.def.Key;
 
@@ -71,15 +72,40 @@ public class TagHandler {
      * or value is not known for key.
      */
     public ValueBase findValidValueForKey(String key, String value) {
-        KeyInfo keyInfo = findKey(key);
+        Tag tag = buildTag(key, value);
+        if(tag != null) {
+            return tag.getValue();
+        }
+        return null;
+    }
+
+    /**
+     * Convenience method for building a tag from strings.
+     * @param keyAsString Key as string.
+     * @param valueAsString Value as string.
+     * @return Tag instance for valid/known key-value pair. Null otherwise.
+     */
+    public Tag buildTag(String keyAsString, String valueAsString) {
+        KeyInfo keyInfo = findKey(keyAsString);
         if(keyInfo != null && keyInfo.valueEnum != null) {
             ValueBase[] values = keyInfo.valueEnum.getEnumConstants();
             for(ValueBase validValue : values) {
-                if(validValue.getValue().equals(value)) {
-                    return validValue;
+                if(validValue.getValue().equals(valueAsString)) {
+                    return new Tag(keyInfo.key, validValue);
                 }
             }
         }
         return null;
     }
+
+    /**
+     * Convenience method for building a tag with value.
+     * @param key Key instance.
+     * @param valueAsString Value as string.
+     * @return Tag instance for valid/known key-value pair. Null otherwise.
+     */
+    public Tag buildTag(KeyBase key, String valueAsString) {
+        return buildTag(key.getKey(), valueAsString);
+    }
+
 }
