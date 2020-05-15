@@ -40,7 +40,7 @@ public class TagLibGenerator {
 
     public TagLibGenerator(ConfigManager config) {
         interpreter = new TagInterpreter();
-        generator = new JavaTagLibGenerator(config.getInputDir(), config.getOutputDir());
+        generator = config.provideTagLibGenerator();
     }
 
     private void generateTagLib() {

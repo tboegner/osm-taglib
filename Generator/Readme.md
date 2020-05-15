@@ -27,11 +27,18 @@ section and the results are collected in the `InterpretationResult` data class. 
 * Mappings from keys to values (known tags)
 
 ### Generation
-The generation is done by reading in code templates and filling them with enum definitions of the processed data. The 
-basic interface `TagLibGeneratorStrategy` can be implemented by multiple classes providing definitions for different 
-languages. Currently only an implementation for java exists.
+The basic interface `TagLibGeneratorStrategy` can be implemented by multiple classes providing definitions for different 
+languages. Currently implementations exist for Java and JavaScript.
+#### Java-Generator
+Implementing class: `JavaTagLibGenerator`. This is the default generator used for creating Enums in the submodule 
+Library.  
+The generation is done by reading in code templates and filling them with enum definitions of the processed data. 
 The key definitions are generated into one single enum. For a high number of keys, this can be problematic. In Java 8
 more than 2000 enum values in a single enum lead to a compiler error in the library.
+#### JavaScript-Generator
+Implementing class: `JavaScriptTagLibGenerator`  
+The definitions are generated into the file osmtaglib.js in form of one json object. Currently keys that have no 
+established values are not generated.  
 
 ### ToDos + improvements
 * Make the generator runable by gradle task.

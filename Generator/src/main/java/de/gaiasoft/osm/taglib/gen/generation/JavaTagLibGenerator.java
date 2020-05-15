@@ -3,11 +3,13 @@ package de.gaiasoft.osm.taglib.gen.generation;
 import de.gaiasoft.osm.taglib.gen.processing.InterpretationResult;
 import de.gaiasoft.osm.taglib.gen.processing.KeySegment;
 import de.gaiasoft.osm.taglib.gen.util.FileIoHelper;
-import org.apache.commons.lang3.CharUtils;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
+
+import static de.gaiasoft.osm.taglib.gen.util.StringHelper.appendSpaces;
+import static de.gaiasoft.osm.taglib.gen.util.StringHelper.toConstantDefinition;
 
 public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
     private String resourcesDir;
@@ -78,25 +80,11 @@ public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
         sb.append("),\n");
     }
 
-    private String toConstantDefinition(String name) {
-        String constDef = name.replaceAll("[:;-]", "_").toUpperCase();
-        if(CharUtils.isAsciiNumeric(constDef.charAt(0))) {
-            return "_" + constDef;
-        }
-        return constDef;
-    }
-
     private void appendValueDefinition(StringBuilder sb, String value) {
         appendSpaces(sb,4);
         sb.append(toConstantDefinition(value));
         sb.append("(\"").append(value).append("\"),\n");
     }
 
-    private StringBuilder appendSpaces(StringBuilder sb, int count) {
-        for(int i=0; i<count; ++i) {
-            sb.append(' ');
-        }
-        return sb;
-    }
 
 }
