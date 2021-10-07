@@ -20,8 +20,8 @@ public enum Value_MILITARY implements ValueBase {
     OFFICE("office"),
     TRAINING_AREA("training_area"),
     OBSTACLE_COURSE("obstacle_course"),
-    NAVAL_BASE("naval_base"),
     DANGER_AREA("danger_area"),
+    BASE("base"),
     ;
 
     private String value;

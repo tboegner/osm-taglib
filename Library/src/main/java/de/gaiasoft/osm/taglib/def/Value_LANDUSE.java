@@ -11,7 +11,6 @@ public enum Value_LANDUSE implements ValueBase {
     RELIGIOUS("religious"),
     FOREST("forest"),
     COMMERCIAL("commercial"),
-    TRAFFIC_ISLAND("traffic_island"),
     FARMYARD("farmyard"),
     BROWNFIELD("brownfield"),
     PLANT_NURSERY("plant_nursery"),
@@ -24,6 +23,7 @@ public enum Value_LANDUSE implements ValueBase {
     CONSTRUCTION("construction"),
     MILITARY("military"),
     RAILWAY("railway"),
+    HIGHWAY("highway"),
     CEMETERY("cemetery"),
     MEADOW("meadow"),
     GREENHOUSE_HORTICULTURE("greenhouse_horticulture"),
@@ -38,9 +38,11 @@ public enum Value_LANDUSE implements ValueBase {
     GARAGES("garages"),
     AQUACULTURE("aquaculture"),
     INDUSTRIAL("industrial"),
+    GREENERY("greenery"),
     RESIDENTIAL("residential"),
     ORCHARD("orchard"),
     RECREATION_GROUND("recreation_ground"),
+    LOGGING("logging"),
     RESERVOIR("reservoir"),
     ;
 

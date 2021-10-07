@@ -1,4 +1,4 @@
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.10.2")
-    implementation(group: 'org.springframework', name: 'spring-web', version: '5.2.3.RELEASE')
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
+    implementation(group: 'org.springframework', name: 'spring-web', version: '5.3.10')
 }

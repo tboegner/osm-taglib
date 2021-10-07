@@ -8,6 +8,7 @@ import de.gaiasoft.osm.taglib.base.ValueBase;
     http://opendatacommons.org/licenses/odbl/1.0/.
 */
 public enum Value_TELECOM implements ValueBase {
+    ANTENNA("antenna"),
     SERVICE_DEVICE("service_device"),
     DISTRIBUTION_POINT("distribution_point"),
     REMOTE_TERMINAL("remote_terminal"),

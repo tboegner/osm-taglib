@@ -1,8 +1,12 @@
+plugins {
+    id 'application'
+}
+
 dependencies {
     implementation project(':RestClient')
-    implementation('org.apache.commons:commons-lang3:3.9')
-    implementation('org.apache.commons:commons-csv:1.6')
-    runtimeOnly('org.xerial:sqlite-jdbc:3.25.2')
+    implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
+    implementation('org.apache.commons:commons-csv:1.9.0')
+    runtimeOnly('org.xerial:sqlite-jdbc:3.36.0.3')
 }
 
 jar {
@@ -12,4 +16,12 @@ jar {
                 "Implementation-Title": "OsmTagLib Generator"
         )
     }
+}
+
+application {
+    mainClass = 'de.gaiasoft.osm.taglib.gen.TagLibGenerator'
+}
+
+run {
+    setArgsString('src/main/resources/OsmTagLibGenerator.properties')
 }

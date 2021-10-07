@@ -23,12 +23,14 @@ public enum Value_RAILWAY implements ValueBase {
     FUNICULAR("funicular"),
     PRESERVED("preserved"),
     STATION("station"),
+    TRAIN_STATION_ENTRANCE("train_station_entrance"),
     ABANDONED("abandoned"),
     TRAM("tram"),
     SIGNAL("signal"),
     NARROW_GAUGE("narrow_gauge"),
     SUBWAY_ENTRANCE("subway_entrance"),
     RAIL("rail"),
+    RAIL_BRAKE("rail_brake"),
     DISUSED("disused"),
     CROSSING("crossing"),
     TRAM_LEVEL_CROSSING("tram_level_crossing"),
@@ -40,6 +42,7 @@ public enum Value_RAILWAY implements ValueBase {
     RAILWAY_CROSSING("railway_crossing"),
     MINIATURE("miniature"),
     DERAIL("derail"),
+    SPUR_JUNCTION("spur_junction"),
     ;
 
     private String value;

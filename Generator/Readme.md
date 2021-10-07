@@ -1,4 +1,4 @@
-## Submodule Generator
+# Submodule Generator
 The generator generates the enums with tag definitions for the library submodule.
 
 The process consists of three steps:
@@ -6,6 +6,10 @@ The process consists of three steps:
 * Tag-Interpretation: Preparing data for generation step. See Interpretation-section.
 * Generation of source-files with aggregated/interpreted data. See Generation-section.
 
+## Usage
+The generator can be used by the gradle task ```run```. The settings from ```OsmTagLibGenerator.properties``` are used.
+
+## Functionality
 ### Aggregation
 The aggregation is highly modular and done by multiple implementations of the `TagAggregatorStrategy` interface. The 
 first intention was to aggregate keys and values by the TagInfo REST interface in combination with smart filters. This 
@@ -41,7 +45,6 @@ The definitions are generated into the file osmtaglib.js in form of one json obj
 established values are not generated.  
 
 ### ToDos + improvements
-* Make the generator runable by gradle task.
 * Support for namespaces (enums defined but not used for generation)
   * Defined Namespaces are very rudimentary
   * Namespace can't be distinguished from normal subkey (type-discrepancy)

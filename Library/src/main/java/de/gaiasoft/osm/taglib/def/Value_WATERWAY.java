@@ -9,6 +9,7 @@ import de.gaiasoft.osm.taglib.base.ValueBase;
 */
 public enum Value_WATERWAY implements ValueBase {
     WEIR("weir"),
+    TIDAL_CHANNEL("tidal_channel"),
     DRYSTREAM("drystream"),
     RAPIDS("rapids"),
     DITCH("ditch"),
@@ -17,6 +18,7 @@ public enum Value_WATERWAY implements ValueBase {
     DAM("dam"),
     ARTIFICIAL("artificial"),
     BOATYARD("boatyard"),
+    SOAKHOLE("soakhole"),
     LOCK_GATE("lock_gate"),
     MILESTONE("milestone"),
     STREAM("stream"),

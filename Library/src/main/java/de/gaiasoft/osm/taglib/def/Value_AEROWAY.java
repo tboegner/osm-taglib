@@ -26,6 +26,7 @@ public enum Value_AEROWAY implements ValueBase {
     GATE("gate"),
     HELIPAD("helipad"),
     AIRSTRIP("airstrip"),
+    PAPI("papi"),
     ;
 
     private String value;

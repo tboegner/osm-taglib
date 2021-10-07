@@ -50,7 +50,7 @@ public class CSVBuilder implements AutoCloseable {
         }
     }
 
-    private static Set<String> filesForAppendMode = new HashSet<>();
+    private static final Set<String> filesForAppendMode = new HashSet<>();
     private CSVPrinter csvPrinter;
 
     public CSVBuilder(Type csvType, String simpleClassName) {
@@ -64,7 +64,7 @@ public class CSVBuilder implements AutoCloseable {
         FileWriter writer;
         try {
             writer = new FileWriter(file, fileAppendMode);
-            CSVFormat format = CSVFormat.DEFAULT.withDelimiter(';').withRecordSeparator('\n');
+            CSVFormat format = CSVFormat.DEFAULT.builder().setDelimiter(';').setRecordSeparator('\n').build();
             csvPrinter = new CSVPrinter(writer, format);
 
             if(!fileAppendMode) {

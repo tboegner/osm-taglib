@@ -12,8 +12,8 @@ import static de.gaiasoft.osm.taglib.gen.util.StringHelper.appendSpaces;
 import static de.gaiasoft.osm.taglib.gen.util.StringHelper.toConstantDefinition;
 
 public class JavaTagLibGenerator implements TagLibGeneratorStrategy {
-    private String resourcesDir;
-    private String outputDir;
+    private final String resourcesDir;
+    private final String outputDir;
 
     public JavaTagLibGenerator(String resourcesDir, String outputDir) {
         this.resourcesDir = resourcesDir;

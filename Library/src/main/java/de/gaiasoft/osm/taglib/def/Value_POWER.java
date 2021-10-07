@@ -14,7 +14,6 @@ public enum Value_POWER implements ValueBase {
     HELIOSTAT("heliostat"),
     TERMINAL("terminal"),
     POLE("pole"),
-    SUB_STATION("sub_station"),
     SWITCH("switch"),
     CATENARY_MAST("catenary_mast"),
     SUBSTATION("substation"),

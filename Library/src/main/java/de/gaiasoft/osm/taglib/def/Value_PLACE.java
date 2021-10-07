@@ -23,14 +23,14 @@ public enum Value_PLACE implements ValueBase {
     PLOT("plot"),
     NEIGHBOURHOOD("neighbourhood"),
     DISTRICT("district"),
-    SUBURB("suburb"),
     FARM("farm"),
+    SUBURB("suburb"),
     ARCHIPELAGO("archipelago"),
     STATE("state"),
     VILLAGE("village"),
     REGION("region"),
-    CITY_BLOCK("city_block"),
     QUARTER("quarter"),
+    CITY_BLOCK("city_block"),
     ;
 
     private String value;

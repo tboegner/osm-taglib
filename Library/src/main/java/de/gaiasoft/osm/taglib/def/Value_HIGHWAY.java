@@ -36,6 +36,7 @@ public enum Value_HIGHWAY implements ValueBase {
     MOTORWAY("motorway"),
     SECONDARY("secondary"),
     RESIDENTIAL("residential"),
+    PASSING_PLACE("passing_place"),
     TURNING_CIRCLE("turning_circle"),
     STOP("stop"),
     MOTORWAY_JUNCTION("motorway_junction"),

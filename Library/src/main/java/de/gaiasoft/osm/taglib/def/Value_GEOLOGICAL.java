@@ -12,6 +12,8 @@ public enum Value_GEOLOGICAL implements ValueBase {
     PALAEONTOLOGICAL_SITE("palaeontological_site"),
     VOLCANIC_CALDERA_RIM("volcanic_caldera_rim"),
     OUTCROP("outcrop"),
+    VOLCANIC_LAVA_FIELD("volcanic_lava_field"),
+    FAULT("fault"),
     MORAINE("moraine"),
     ;
 
